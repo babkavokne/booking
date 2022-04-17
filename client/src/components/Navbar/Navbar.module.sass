@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap')
+@import '../../styles/Colors'
+
+.wrapper
+  background-color: #fff
+  display: flex
+  justify-content: center
+
+.main
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 40px 0
+  .left
+    display: flex
+    align-items: center
+    column-gap: 108px
+    margin-right: 20px
+    .link
+      font-family: 'Luckiest Guy', cursive
+      font-size: 24px
+      color: $main-color
+      text-transform: uppercase
+      white-space: nowrap
+    &:visited
+      color: inherit
+    span
+      color: $redlike-color
+  .right
+    display: flex
+    justify-content: space-between
+    max-width: 200px
+    width: 100%
+    column-gap: 15px
+    img
+      cursor: pointer
+
+.bottom
+  background-color: $title-background
+
+@media (max-width: 768px)
+  .main
+    justify-content: center
+    padding: 20px
+    flex-wrap: wrap
+    row-gap: 15px
+    .left
+      width: 100%
+      justify-content: space-between
+      column-gap: normal
+      margin-right: 0px
+      .link
+        margin-right: 15px
+    .right
+      max-width: 100%
+
+@media (max-width: 700px)
+  .main
+    justify-content: center
+
+@media (max-width: 520px)
+  .main
+    .left
+      justify-content: center
+      row-gap: 15px
+      flex-wrap: wrap
+      margin-right: 0
+    .right
+      justify-content: center
+      column-gap: 25px

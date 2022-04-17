@@ -1,0 +1,61 @@
+.main
+  display: flex
+  justify-content: space-between
+  font-size: 10px
+  margin: 24px 0 20px
+
+.links
+  display: flex
+  column-gap: 100px
+
+.link
+  display: flex
+  align-items: center
+  img
+    margin-right: 20px
+
+.question
+  font-weight: bold
+  margin-right: 5px
+
+.call
+  white-space: nowrap
+
+@media (max-width: 768px)
+  .links
+    column-gap: 50px
+
+  .link
+    white-space: nowrap
+    img
+      margin-right: 10px
+
+@media (max-width: 600px)
+  .links
+    column-gap: 30px
+
+@media (max-width: 520px)
+  .call
+    display: block
+    margin-top: 4px
+
+@media (max-width: 480px)
+  .link
+    white-space: nowrap
+    img
+      margin-right: 5px
+
+@media (max-width: 400px)
+  .main
+    margin: 20px 0 10px
+
+  .links
+    row-gap: 20px
+    display: block
+
+  .link
+    &:first-child
+      margin-bottom: 2px
+
+  .call
+    margin-top: 10px
