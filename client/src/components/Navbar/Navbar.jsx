@@ -25,7 +25,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <NavBottom />
+      <NavBottom className={cl.bottom}/>
     </>
 
 

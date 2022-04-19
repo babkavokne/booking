@@ -1,0 +1,31 @@
+@import '../../styles/Colors'
+
+.infopanel
+  padding-top: 70px
+  .nav
+    display: flex
+    justify-content: space-between
+    font-size: 14px
+    font-weight: bold
+    .link
+      position: relative
+      margin-bottom: 50px
+      &::after
+        content: ""
+        position: absolute
+        bottom: -15px
+        left: 50%
+        width: 0
+        height: 4px
+        background-color: $redlike-color
+        transition: all .3s
+      &:hover::after
+        width: 100%
+        left: 0
+      &:hover
+        color: $redlike-color
+      &.isActive
+        color: $redlike-color
+        &::after
+          width: 100%
+          left: 0

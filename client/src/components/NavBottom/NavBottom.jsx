@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import cl from './NavBottom.module.sass'
 
-const Navbottom = () => {
+const Navbottom = (props) => {
   return (
-    <div className={cl.wrapper}>
+    <div className={`${cl.wrapper} ${props.className}`}>
       <div className='container'>
         <div className={cl.main}>
           <Link to='/' className={cl.link}>All Deals</Link>

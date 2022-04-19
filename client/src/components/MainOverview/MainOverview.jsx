@@ -1,5 +1,6 @@
 import React from 'react';
 import Booking from '../Booking/Booking';
+import Map from '../Map/Map';
 import Slider from '../Slider/Slider';
 import cl from './MainOverview.module.sass'
 
@@ -30,9 +31,9 @@ const MainOverview = () => {
         </div>
 
         <div className={cl.main}>
-          <Slider />
-          <Booking />
-
+            <Slider className={cl.slider}/>
+            <Booking className={cl.booking}/>
+            <Map className={cl.map}/>
         </div>
       </div>
     </div>
