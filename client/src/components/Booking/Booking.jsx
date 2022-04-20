@@ -14,7 +14,7 @@ const Booking = (props) => {
           <span>per room / night</span>
         </div>
         <div className={cl.room}>
-          <div className={cl.guests}>
+          <div className={cl.rooms}>
             <img src={user} alt="Human icon: Icon" />
             2 x Guests
           </div>

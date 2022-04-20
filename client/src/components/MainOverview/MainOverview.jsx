@@ -2,6 +2,8 @@ import React from 'react';
 import Booking from '../Booking/Booking';
 import Map from '../Map/Map';
 import Slider from '../Slider/Slider';
+import Flash from './components/Flash/Flash'
+import Rating from './components/rating/Rating'
 import cl from './MainOverview.module.sass'
 
 const MainOverview = () => {
@@ -18,22 +20,22 @@ const MainOverview = () => {
               <div className={cl.name}>
                 GRAND HILTON HOTEL
               </div>
-              <div className={cl.offer}>Flash Offer</div>
+              <div className={cl.additions}>
+                <Flash />
+                <Rating className={cl.mobile}/>
+              </div>
             </div>
             <div className={cl.subline}>
               Half-Board/ All Inclusive + Complimentary Activities + Child Stays Free
             </div>
           </div>
-          <div className={cl.rating}>
-            <p>User Rattings</p>
-            <div><span>4.5</span>/5</div>
-          </div>
+          <Rating className={cl.hidden}/>
         </div>
 
         <div className={cl.main}>
-            <Slider className={cl.slider}/>
-            <Booking className={cl.booking}/>
-            <Map className={cl.map}/>
+          <Slider className={cl.slider} />
+          <Booking className={cl.booking} />
+          <Map />
         </div>
       </div>
     </div>

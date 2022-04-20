@@ -1,5 +1,15 @@
 @import '../../styles/Colors'
 
+.menu
+  background-color: $title-background
+  color: #fff
+  font-weight: bold
+  font-size: 14px
+  text-transform: uppercase 
+  display: none
+  justify-content: center
+  padding: 10px 0
+
 .wrapper
   background-color: $title-background
   display: flex
@@ -25,6 +35,10 @@
     justify-content: center
 
 @media (max-width: 320px)
+  .menu
+    display: flex
+    padding-bottom: 5px
   .main
     flex-direction: column
     align-items: center
+    padding-top: 0
