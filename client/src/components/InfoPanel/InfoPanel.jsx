@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import InfoBlock from '../InfoBlock/InfoBlock';
 import cl from './InfoPanel.module.sass'
 
 const InfoPanel = () => {
@@ -20,6 +21,7 @@ const InfoPanel = () => {
             <NavLink className={cl.link } to='/'>Reviews</NavLink>
             <NavLink className={cl.link } to='/'>Questions & Answers</NavLink>
           </div>
+          <InfoBlock />
         </div>
       </div>
     </div>
