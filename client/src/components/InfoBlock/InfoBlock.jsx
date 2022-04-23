@@ -1,7 +1,8 @@
 import React from 'react';
 import Highlights from './components/Highlights/Highlights';
 import OfferDetails from './components/OfferDetails/OfferDetails';
-import cl from './InfoBlock.module.sass'
+import PackageDetails from './components/PackageDetails/PackageDetails';
+import cl from './InfoBlock.module.sass';
 
 const InfoBlock = () => {
   return (
@@ -10,7 +11,7 @@ const InfoBlock = () => {
       <div className={cl.main}>
         <Highlights className={cl.highlights}/>
         <OfferDetails className={cl.offerdetails}/>
-        <Highlights />
+        <PackageDetails className={cl.packagedetails} />
       </div>
     </div>
   );

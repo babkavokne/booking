@@ -1,6 +1,8 @@
 @import '../../../../styles/Colors'
 
 .offerdetails
+  border-radius: 0 0 8px 8px
+  background-color: #fff
   .header
     color: #fff
     background-color: $title-background
@@ -9,17 +11,17 @@
     font-weight: bold
     font-size: 14px
   .body
-    background-color: #fff
-    padding: 27px 35px 27px 24px
+    padding: 27px 28px 18px 25px
     display: flex
     flex-wrap: wrap
     justify-content: space-between
-    row-gap: 20px
     .item, .date
       background-size: contain
       padding-left: 40px
       width: calc(50% - 68px)
     .item
       background: url('../../../../static/icons/circle-check.svg') no-repeat left top
+      .footer
+        margin-top: 40px
     .date
       background: url('../../../../static/icons/calendar.svg') no-repeat left top
