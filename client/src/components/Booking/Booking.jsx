@@ -2,6 +2,7 @@ import React from 'react';
 import home from '../../static/icons/home.svg'
 import phone from '../../static/icons/phone-call.svg'
 import user from '../../static/icons/user.svg'
+import MyButton from '../MyButton/MyButton';
 import cl from './Booking.module.sass';
 
 const Booking = (props) => {
@@ -31,7 +32,7 @@ const Booking = (props) => {
           12100
         </div>
       </div>
-      <button>View Other Options</button>
+      <MyButton text='View Other Option'/>
     </div>
   );
 }

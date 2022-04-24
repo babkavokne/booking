@@ -3,7 +3,7 @@ import cl from './Highlights.module.sass';
 
 const Highlights = (props) => {
   return (
-    <div className={`${cl.highlights}`}>
+    <div className={`${cl.highlights} ${props.className}`}>
       <div className={cl.header}>Package Highlights</div>
       <div className={cl.body}>
         <div className={cl.item}>Half Board/ All Inclusive</div>

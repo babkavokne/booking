@@ -1,7 +1,7 @@
 @import '../../styles/Colors'
 
 .infopanel
-  padding-top: 70px
+  padding-top: 60px
   .nav
     display: flex
     justify-content: space-between
@@ -9,7 +9,7 @@
     font-weight: bold
     .link
       position: relative
-      margin-bottom: 50px
+      margin-bottom: 20px
       &::after
         content: ""
         position: absolute
@@ -29,3 +29,22 @@
         &::after
           width: 100%
           left: 0
+
+@media (max-width: 968px)
+  .infopanel
+    padding-top: 30px
+    .nav
+      justify-content: center
+      flex-wrap: wrap
+      column-gap: 20px
+
+@media (max-width: 520px)
+  .infopanel
+    padding-top: 10px
+    .nav
+      flex-direction: column
+      align-items: center
+      .link
+        margin-bottom: 10px
+        &::after
+          bottom: -5px

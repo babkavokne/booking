@@ -16,11 +16,21 @@
     background-color: #fff
     border-radius: 0 0 8px 8px
     padding: 38px 25px 57px
+    .mainline, .subline
+      display: flex
+      justify-content: space-between
+      width: 100%
+    .mainline
+      padding-bottom: 44px
+      border-bottom: 1px dashed #E0E0E0
+    .subline
+      padding-top: 33px
     .block
       flex: 0 0 33%
       .title
         font-size: 13px
         font-weight: 600
+        white-space: nowrap
         color: $redlike-color
       .item
         background: url('../../../../static/icons/circle-check.svg') no-repeat left
@@ -29,3 +39,49 @@
         padding-left: 40px
       .title, .item
         margin-bottom: 21px
+
+@media (max-width: 968px)
+  .packagedetails
+    .body
+      .mainline
+        padding-bottom: 0
+        row-gap: 10px
+        column-gap: 10px
+        flex-wrap: wrap
+        .block
+          flex: 1 0 33%
+
+@media (max-width: 768px)
+  .packagedetails
+    .body
+      .block
+        flex: none
+
+@media (max-width: 680px)
+  .packagedetails
+    .body
+      .mainline
+        flex-direction: column
+        flex-wrap: nowrap
+      .subline
+        flex-wrap: wrap
+
+@media (max-width: 480px)
+  .packagedetails
+    .body
+      padding: 20px 15px 37px
+      .mainline
+        column-gap: 10px
+        row-gap: 0
+      .block
+        .item
+          padding-left: 30px
+        .item, .title
+          margin-bottom: 10px
+      .subline
+        flex-wrap: wrap
+
+@media (max-width: 320px)
+  .packagedetails
+    .body
+      padding: 15px 10px 20px
