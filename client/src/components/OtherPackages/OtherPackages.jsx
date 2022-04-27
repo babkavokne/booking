@@ -5,6 +5,7 @@ import user from '../../static/icons/user.svg'
 import home from '../../static/icons/home.svg'
 import cl from './OtherPackages.module.sass'
 import MyButton from '../MyButton/MyButton';
+import InnCard from './components/InnCard/InnCard';
 
 const OtherPackages = () => {
   return (
@@ -15,7 +16,7 @@ const OtherPackages = () => {
           <div className={cl.body}>
             <div className={cl.card}>
               <div className={cl.flag}>Flash Offer</div>
-              <img src={beach} alt="Image of Inn on the white sand near the sea: Image" />
+              <img className={cl.inn} src={beach} alt="Image of Inn on the white sand near the sea: Image" />
               <div className={cl.info}>
                 <div className={cl.rating}>
                   //заглушка звёздочек
@@ -41,6 +42,10 @@ const OtherPackages = () => {
                 </div>
               </div>
             </div>
+            <InnCard />
+            <InnCard />
+            <InnCard />
+            <InnCard />
           </div>
         </div>
       </div>

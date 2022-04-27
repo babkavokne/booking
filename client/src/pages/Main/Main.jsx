@@ -1,5 +1,6 @@
 import React from 'react';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import GuestReview from '../../components/GuestReview/GuestReview';
 import InfoPanel from '../../components/InfoPanel/InfoPanel';
 import MainOverview from '../../components/MainOverview/MainOverview';
 import Navbar from '../../components/Navbar/Navbar';
@@ -16,6 +17,7 @@ const Main = () => {
       <MainOverview />
       <InfoPanel />
       <OtherPackages />
+      <GuestReview />
     </>
   );
 }
