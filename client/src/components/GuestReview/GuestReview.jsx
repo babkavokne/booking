@@ -1,5 +1,7 @@
 import React from 'react';
 import avatar from '../../static/images/emma.jpg'
+import leftArrow from '../../static/icons/arrow-left.svg'
+import rightArrow from '../../static/icons/arrow-right.svg'
 import cl from './GuestReview.module.sass'
 
 const GuestReview = () => {
@@ -20,6 +22,8 @@ const GuestReview = () => {
                 It was very nice hotel with cleanliness. Staff behavior was good and polite. They welcome us very well. Issue was only that Lift was not in working and we were allotted to 3rd floor and amenities articles were in corner of gallery which were giving bad feeling. Breakfast was good and support of the staff was also very nice. Location is not good as per atmosphere, it is very nearby most of the popular places but self location in a narrow street is not good. Overall it was a good experience and could recommend.
               </div>
             </div>
+            <img src={leftArrow} alt="Arrow-button left (previous): Icon" className={`${cl.arrow} ${cl.left}`} />
+            <img src={rightArrow} alt="Arrow-button left (next): Icon" className={`${cl.arrow} ${cl.right}`} />
           </div>
         </div>
       </div>

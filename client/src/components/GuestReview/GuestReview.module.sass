@@ -1,6 +1,7 @@
 @import '../../styles/Colors'
-  
+
 .guestreview
+  padding-bottom: 74px
   .header
     text-align: center
     font-size: 36px
@@ -11,10 +12,14 @@
   .slider
     display: flex
     justify-content: center
+    position: relative
     .item
-      padding-top: 140px
+      padding: 140px 60px 26px
       background-color: #fff
       position: relative
+      max-width: 730px
+      border-radius: 8px
+      
       .profile
         position: absolute
         top: -50px
@@ -31,3 +36,15 @@
         .registry
           font-size: 10px
           margin-bottom: 5px
+      .review
+        line-height: 1.6
+        max-width: 530px
+    .arrow
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+      cursor: pointer
+      &.left
+        left: 0
+      &.right
+        right: 0

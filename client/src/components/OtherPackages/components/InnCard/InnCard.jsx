@@ -26,7 +26,7 @@ const InnCard = () => {
         </div>
         <div className={cl.bottom}>
           <div className={cl.price}><span>$10,500</span>$ 8,500</div>
-          <MyButton text="Book Now" className={cl.button} />
+          <MyButton className={cl.button}>Book Now</MyButton>
         </div>
       </div>
     </div>

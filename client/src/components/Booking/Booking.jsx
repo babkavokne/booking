@@ -32,7 +32,7 @@ const Booking = (props) => {
           12100
         </div>
       </div>
-      <MyButton text='View Other Option'/>
+      <MyButton>View Other Option</MyButton>
     </div>
   );
 }
