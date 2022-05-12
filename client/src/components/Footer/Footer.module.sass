@@ -10,6 +10,7 @@
     flex-wrap: wrap
     padding-top: 108px
     justify-content: space-between
+    column-gap: 10px
     .logo
       display: flex
       flex-direction: column
@@ -32,6 +33,7 @@
         .icons
           display: flex
           column-gap: 10px
+          margin-left: 40px
       .header
         color: #fff
         margin-bottom: 20px
@@ -44,9 +46,8 @@
       .form
         .topline
           display: flex
-          justify-content: space-between
+          column-gap: 20px
         .input
-          max-width: 255px
           width: 100%
           padding: 18px 23px
           border-radius: 4px
@@ -54,7 +55,6 @@
         textarea
           resize: none
           display: block
-          min-width: 540px
           width: 100%
           border-radius: 4px
           padding: 18px 23px
@@ -68,5 +68,17 @@
           .button
             width: 160px
             font-size: 12px
+      &:last-child
+        width: calc(50% - 10px)
     .contact
       max-width: 493px
+      width: 50%
+      row-gap: 20px
+      .item
+        display: flex
+        align-items: flex-start
+        word-wrap: 
+        img
+          display: bloc
+          margin-right: 15px
+      

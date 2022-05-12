@@ -57,20 +57,19 @@ const Footer = () => {
           <div className={`${cl.infoblock} ${cl.contact}`}>
             <div className={cl.header}>Contact Details</div>
             <div className={cl.item}>Feel free to contact us by phone, email or by our contact form</div>
-            <div className={cl.info}>
-              <div className={cl.item}>
-                <img src={location} alt="" />
-                9748 Blossom Hill Rd undefined Lansing, Idaho 68545 United States
-              </div>
-              <div className={cl.item}>
-                <img src={mail} alt="" />
-                Tel (business hours) : 269 1500
-                Tel (hotline) Monday - Saturday: 52-56-61-38 (08:00 am – 20:00 pm)
-                Tel (hotline) Sunday: 52-56-61-38 (08:00 am – 14:00 pm)
-              </div><div className={cl.item}>
-                <img src={phone} alt="" />
-                cherly.lawson@example.com
-              </div>
+
+            <div className={cl.item}>
+              <img src={location} alt="" />
+              9748 Blossom Hill Rd undefined Lansing, Idaho 68545 United States
+            </div>
+            <div className={cl.item}>
+              <img src={mail} alt="" />
+              Tel (business hours) : 269 1500
+              Tel (hotline) Monday - Saturday: 52-56-61-38 (08:00 am – 20:00 pm)
+              Tel (hotline) Sunday: 52-56-61-38 (08:00 am – 14:00 pm)
+            </div><div className={cl.item}>
+              <img src={phone} alt="" />
+              cherly.lawson@example.com
             </div>
           </div>
           <div className={cl.infoblock}>
