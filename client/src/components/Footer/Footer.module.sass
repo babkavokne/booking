@@ -43,6 +43,8 @@
       .item
         color: #bdbdbd
         line-height: 20px
+      .link:hover
+        color: #fff
       .form
         .topline
           display: flex
@@ -77,8 +79,60 @@
       .item
         display: flex
         align-items: flex-start
-        word-wrap: 
+        word-wrap:
         img
           display: bloc
           margin-right: 15px
-      
+
+@media (max-width: 868px)
+  .wrapper
+    .footer
+      padding-top: 54px
+      .infoblock
+        margin-bottom: 50px
+        &:last-child
+          width: 100%
+      .contact
+        width: 100%
+        .header
+          margin-bottom: 0
+
+@media (max-width: 768px)
+  .wrapper
+    .footer
+      .infoblock
+        &:first-child
+          width: 100%
+          margin-bottom: 20px
+        .logo
+          flex-direction: row
+          column-gap: 20px
+
+@media (max-width: 699px)
+  .wrapper
+    .footer
+      justify-content: space-around
+      .contact
+        max-width: 50%
+
+@media (max-width: 530px)
+  .wrapper
+    .footer
+      flex-direction: column
+      .infoblock
+        margin-bottom: 20px
+        &:first-child
+          width: 0
+          margin-bottom: 20px
+        .logo
+          flex-direction: column
+          column-gap: 0
+        .social
+          display: block
+          padding-top: 10px
+          .icons
+            column-gap: 5px
+            margin-left: 0
+            max-width: 100%
+      .contact
+          max-width: 100%

@@ -21,23 +21,23 @@ const Footer = () => {
           </Link></div>
           <div className={cl.infoblock}>
             <div className={cl.header}>ALL CATEGORIES</div>
-            <NavLink className={cl.item} to='/'>All Deals</NavLink>
-            <NavLink className={cl.item} to='/'>Hotels</NavLink>
-            <NavLink className={cl.item} to='/'>Activities</NavLink>
-            <NavLink className={cl.item} to='/'>Spa Packages</NavLink>
-            <NavLink className={cl.item} to='/'>Hotel Day Packages</NavLink>
-            <NavLink className={cl.item} to='/'>Restaurants</NavLink>
-            <NavLink className={cl.item} to='/'>Fitness</NavLink>
-            <NavLink className={cl.item} to='/'>Rodrigues</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>All Deals</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Hotels</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Activities</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Spa Packages</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Hotel Day Packages</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Restaurants</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Fitness</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Rodrigues</NavLink>
           </div>
           <div className={cl.infoblock}>
             <div className={cl.header}>ADDITIONAL INFORMATION</div>
-            <NavLink className={cl.item} to='/'>About Us</NavLink>
-            <NavLink className={cl.item} to='/'>Contact Us</NavLink>
-            <NavLink className={cl.item} to='/'>How does it work?</NavLink>
-            <NavLink className={cl.item} to='/'>Frequently Asked Questions</NavLink>
-            <NavLink className={cl.item} to='/'>Deals.mu loyalty program</NavLink>
-            <NavLink className={cl.item} to='/'>Promote your Business on BTP</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>About Us</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Contact Us</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>How does it work?</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Frequently Asked Questions</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Deals.mu loyalty program</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Promote your Business on BTP</NavLink>
             <div className={cl.social}>
               <div className={cl.header}>Social Network</div>
               <div className={cl.icons}>
@@ -49,15 +49,14 @@ const Footer = () => {
           </div>
           <div className={cl.infoblock}>
             <div className={cl.header}>LEGAL INFORMATION</div>
-            <NavLink className={cl.item} to='/'>Terms & Conditions</NavLink>
-            <NavLink className={cl.item} to='/'>Disclaimer</NavLink>
-            <NavLink className={cl.item} to='/'>Cancellation policy</NavLink>
-            <NavLink className={cl.item} to='/'>Privacy</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Terms & Conditions</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Disclaimer</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Cancellation policy</NavLink>
+            <NavLink className={`${cl.item} ${cl.link}`} to='/'>Privacy</NavLink>
           </div>
           <div className={`${cl.infoblock} ${cl.contact}`}>
             <div className={cl.header}>Contact Details</div>
             <div className={cl.item}>Feel free to contact us by phone, email or by our contact form</div>
-
             <div className={cl.item}>
               <img src={location} alt="" />
               9748 Blossom Hill Rd undefined Lansing, Idaho 68545 United States
