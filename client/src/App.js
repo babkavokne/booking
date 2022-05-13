@@ -1,10 +1,23 @@
 import Main from './pages/Main/Main';
-import { BrowserRouter } from 'react-router-dom'
+import Calc from './pages/Calculator/Calculator';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Auth from './pages/Auth/Auth';
 
 function App() {
+  let isAuth = false
   return (
     <BrowserRouter>
-      <Main />
+      {isAuth ?
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/calc' element={<Calc />} />
+        </Routes>
+        :
+        <Routes>
+          <Route path='/' element={<Auth />} />
+        </Routes>
+        }
+
     </BrowserRouter>
   );
 }

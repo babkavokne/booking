@@ -13,13 +13,12 @@ const Navbar = () => {
         <div className='container'>
           <div className={cl.main}>
             <div className={cl.left}>
-              <Link to='' className={cl.link}>
+              <Link to='/' className={cl.link}>
                 Best <span>tour</span> plan
               </Link>
               <Searchbar />
             </div>
             <div className={cl.right}>
-              <img src={cart} alt="Icon of shopping-cart: Icon" />
               <ProfilePanel />
             </div>
           </div>
