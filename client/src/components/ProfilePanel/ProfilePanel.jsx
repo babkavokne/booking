@@ -8,7 +8,7 @@ import MyButton from '../MyButton/MyButton';
 import { Link } from 'react-router-dom';
 
 const Profilepanel = () => {
-  let isAuth = true
+  let isAuth = false
   return (
     <>
       {isAuth ? <img src={cart} alt="Icon of shopping-cart: Icon" /> : null}

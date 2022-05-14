@@ -14,10 +14,10 @@ function App() {
         </Routes>
         :
         <Routes>
-          <Route path='/' element={<Auth />} />
+          <Route path='/' element={<Main />} />
+          <Route path='/auth' element={<Auth />} />
         </Routes>
-        }
-
+      }
     </BrowserRouter>
   );
 }
