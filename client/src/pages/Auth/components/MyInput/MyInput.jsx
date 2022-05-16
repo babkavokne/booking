@@ -10,6 +10,7 @@ const MyInput = (props) => {
       onChange={props.onChange}
       value={props.value}
       name={props.name}
+      id={props.id}
     />
   );
 }
