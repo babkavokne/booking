@@ -12,6 +12,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "express-validator": "^6.14.0",
     "nodemon": "^2.0.16"
   }
 }
