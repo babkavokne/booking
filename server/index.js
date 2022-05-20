@@ -25,6 +25,8 @@ const start = async () => {
       useUnifiedTopology: true 
     })
     app.listen(PORT, () => console.log(`Server started at PORT = ${PORT}`));
+    console.log(mongoose.Types.ObjectId);
+    console.log(mongoose.SchemaTypes.ObjectId);
   } catch (e) {
     console.log(e);
   }
