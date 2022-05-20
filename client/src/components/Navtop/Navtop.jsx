@@ -5,6 +5,8 @@ import starIcon from '../../static/icons/star.svg'
 import cl from './Navtop.module.sass';
 
 const Navtop = () => {
+  
+
   return (
     <div className='wrapper'>
       <div className='container'>
