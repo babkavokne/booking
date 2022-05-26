@@ -1,7 +1,10 @@
-const router = require('express').Router()
-const bcrypt = require('bcrypt')
+const router = require('express').Router();
+const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
-const User = require('../models/user-model')
+const User = require('../models/user-model');
+const UserDto = require('../dtos/user-dto');
+const tokenService = require('../services/token-service');
+const tokenModel = require('../models/token-model');
 
 router.post('/registration',
   body('email').isEmail(),
@@ -23,7 +26,13 @@ router.post('/registration',
       const hashPassword = await bcrypt.hash(password, 3)
 
       const user = await User.create({ email, password: hashPassword, name })
-      res.send(`${user} Зарегало`,)
+      const userDto = new UserDto(user);
+      const tokens = tokenService.generateToken({ ...userDto });
+      const result = await tokenService.saveToken(userDto.id, tokens.refresh)
+
+      res.cookie('refreshToken', tokens.refresh, { maxAge: 60 * 24 * 60 * 60 * 1000, httpOnly: true })
+
+      res.status(200).send('alles kla')
     } catch (e) {
       res.status(500).send('Ошибка')
     }
@@ -33,27 +42,35 @@ router.post('/registration',
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body
-
     const user = await User.findOne({ email });
 
     if (!user) {
       throw new Error('Нет такого :(')
     }
 
-     const isPassEquals = await bcrypt.compare(password, user.password)
+    const isPassEquals = await bcrypt.compare(password, user.password)
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateToken({ ...userDto });
+    const result = await tokenService.saveToken(userDto.id, tokens.refresh)
 
-     if (isPassEquals) {
-       res.send({ name: user.name })
+    if (isPassEquals) {
+      res.cookie('refresh', tokens.refresh).json({ name: user.name })
     }
-      
+
 
   } catch (e) {
     console.log('Неправильный email или пароль');
   }
 })
 
-// router.logout('/logout', (req, res) => {
-
-// })
+router.post('/logout', async (req, res) => {
+  try {
+    const { refreshToken } = req.cookies;
+    const token = await tokenModel.deleteOne({ refreshToken })
+    res.clearCookie('refresh').json({message: 'it"s ok'})
+  } catch (e) {
+    console.log('Ну если ты даже выйти не смог...');
+  }
+})
 
 module.exports = router

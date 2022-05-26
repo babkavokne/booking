@@ -4,6 +4,7 @@ import MyButton from '../../../../components/MyButton/MyButton';
 import MyInput from '../MyInput/MyInput';
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../../../store/store'
+import $api from '../../../../http/index'
 import cl from './Login.module.sass'
 
 
@@ -16,12 +17,10 @@ const Login = (props) => {
   }
 
   const test = async () => {
-    const res = await axios.post('http://localhost:5000/login', { email: info.email, password: info.password })
-    console.log(res.data.name);
+    const res = await $api.post('/login', { email: info.email, password: info.password })
 
     if (res) {
       dispatch(login(res.data.name));
-      console.log(auth.isAuth, auth.fullName);
       localStorage.setItem('username', res.data.name);
       localStorage.setItem('isAuth', true)
     }

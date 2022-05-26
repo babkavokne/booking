@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MyButton from '../../../../components/MyButton/MyButton';
 import axios from 'axios'
 import MyInput from '../MyInput/MyInput';
+import $api from '../../../../http/index'
 import cl from './Registration.module.sass'
 
 const Registration = () => {
@@ -14,12 +15,6 @@ const Registration = () => {
   let userInfo = (e) => {
     setUser({ ...user, [e.currentTarget.name]: e.currentTarget.value })
   }
-
-  const API_URL = 'http://localhost:5000'
-
-  const $api = axios.create({
-    baseURL: API_URL
-  })
 
 
   let validation = (user, repeatedPassword) => {
@@ -53,7 +48,7 @@ const Registration = () => {
 
   let formSubmit = async () => {
     if (validation(user, document.getElementById('confirm-password').value)) {
-      let res = await $api.post('registration', { email: user.email, password: user.password, name: user.name })
+      let res = await $api.post('/registration', { email: user.email, password: user.password, name: user.name })
 
       console.log(res.data);
     }

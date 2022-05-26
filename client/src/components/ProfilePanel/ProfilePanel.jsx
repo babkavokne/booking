@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/store';
 import { useState } from 'react';
 import cl from './ProfilePanel.module.sass';
+import $api from '../../http/index';
 
 const Profilepanel = () => {
   const [isShown, setShown] = useState(false)
@@ -20,10 +21,11 @@ const Profilepanel = () => {
     setShown(!isShown)
   }
 
-  const exit = () => {
+  const exit = async () => {
     dispatch(logout())
-    console.log('123');
     localStorage.clear()
+    const result = await $api.post('/logout')
+    console.log(result);
   }
 
   return (
