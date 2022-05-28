@@ -3,8 +3,9 @@ import { createSlice } from '@reduxjs/toolkit'
 // import counterReducer from '../reducers/counter/counterSlice'
 
 const initialState = {
-  isAuth: localStorage.getItem('isAuth'),
-  fullName: localStorage.getItem('username') || ''
+  isAuth: localStorage.getItem('isAuth') || false,
+  fullName: localStorage.getItem('username') || '',
+  isLoading: false
 }
 
 export const authSlice = createSlice({
@@ -18,11 +19,15 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.isAuth = false;
       state.fullName = '';
-    }
+    },
+    loading: (state, action) => {
+      state.isLoading = action.payload
+    },
+    
   },
 })
 
-export const { login, logout } = authSlice.actions
+export const { login, logout, loading } = authSlice.actions
 
 const store = configureStore({
   reducer: {

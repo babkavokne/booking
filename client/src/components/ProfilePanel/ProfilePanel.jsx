@@ -25,7 +25,6 @@ const Profilepanel = () => {
     dispatch(logout())
     localStorage.clear()
     const result = await $api.post('/logout')
-    console.log(result);
   }
 
   return (

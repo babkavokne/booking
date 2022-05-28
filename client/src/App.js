@@ -1,17 +1,34 @@
 import Main from './pages/Main/Main';
 import Calc from './pages/Calculator/Calculator';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { useSelector } from 'react-redux';
-import { auth } from './store/store'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { loading } from './store/store'
+// import { auth } from './store/store' 
 import Auth from './pages/Auth/Auth';
+import { useEffect } from 'react';
+import $api from './http';
 
 function App() {
-  let isAuth = useSelector((state) => state.auth.isAuth)
+  let auth = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+
+  const chekAuth = async () => {
+    dispatch(loading(true))
+    const response = await $api.get('/refresh')
+    console.log(response);
+    localStorage.setItem('token', response.data.access)
+    dispatch(loading(false))
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      chekAuth()
+    }
+  }, [])
 
   return (
     <BrowserRouter>
-      {isAuth ?
+      {auth.isAuth ?
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/calc' element={<Calc />} />
