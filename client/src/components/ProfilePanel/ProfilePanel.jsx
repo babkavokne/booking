@@ -4,7 +4,7 @@ import camera from '../../static/icons/icon-camera200.png';
 import arrow from '../../static/icons/chevron-down.svg';
 import cart from '../../static/icons/shopping-cart.svg';
 import MyButton from '../MyButton/MyButton';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/store';
 import { useState } from 'react';
@@ -14,7 +14,7 @@ import $api from '../../http/index';
 const Profilepanel = () => {
   const [isShown, setShown] = useState(false)
   let isAuth = useSelector((state) => state.auth.isAuth)
-  let user = useSelector((state) => state.auth.fullName) || ''
+  let user = useSelector((state) => state.auth.fullName || '')
   const dispatch = useDispatch();
 
   const showModal = () => {
@@ -36,8 +36,9 @@ const Profilepanel = () => {
             <img src={avatar} alt="User avatar: Image" className={cl.avatar} />
             <span>{user.split(' ')[1]}</span>
             <img src={arrow} alt="Panel arrow: Icon" />
-            <div className={`${cl.logout} ${isShown ? cl.active : ''}`}>
+            <div className={`${cl.modal} ${isShown ? cl.active : ''}`}>
               <span onClick={() => exit()}>Выйти</span>
+              <NavLink to='/editProfile'><span>Редактировать профиль</span></NavLink> 
             </div>
           </>
         ) : (

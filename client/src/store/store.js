@@ -21,13 +21,15 @@ export const authSlice = createSlice({
       state.fullName = '';
     },
     loading: (state, action) => {
-      state.isLoading = action.payload
+      state.isLoading = action.payload;
     },
-    
+    nameChange: (state, action) => {
+      state.fullName = action.payload;
+    }
   },
 })
 
-export const { login, logout, loading } = authSlice.actions
+export const { login, logout, loading, nameChange } = authSlice.actions
 
 const store = configureStore({
   reducer: {

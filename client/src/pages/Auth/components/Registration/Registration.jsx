@@ -7,7 +7,9 @@ import cl from './Registration.module.sass'
 
 const Registration = () => {
   let [user, setUser] = useState({
-    name: '',
+    firstName: '',
+    secondName: '',
+    sureName: '',
     email: '',
     password: ''
   })
@@ -18,7 +20,7 @@ const Registration = () => {
 
 
   let validation = (user, repeatedPassword) => {
-    if (user.name.length == 0) {
+    if (user.firstName.length == 0) {
       console.log('Имя у тебя есть?');
       return false;
     }
@@ -48,7 +50,7 @@ const Registration = () => {
 
   let formSubmit = async () => {
     if (validation(user, document.getElementById('confirm-password').value)) {
-      let res = await $api.post('/registration', { email: user.email, password: user.password, name: user.name })
+      const res = await $api.post('/registration', { email: user.email, password: user.password, name: `${user.sureName} ${user.firstName} ${user.secondName}`, })
 
       console.log(res.data);
     }
@@ -57,10 +59,12 @@ const Registration = () => {
   return (
     <form className={cl.registration}>
       <h1 className={cl.header}>Успех!</h1>
-      <MyInput onChange={(e) => userInfo(e)} type="text" name='name' placeholder="Имя пользователя" value={user.name} />
-      <MyInput onChange={(e) => userInfo(e)} type="email" name='email' placeholder="Email" value={user.email} />
-      <MyInput onChange={(e) => userInfo(e)} type="password" name='password' placeholder="Пароль" value={user.password} />
-      <MyInput type="password" name='confirm-password' id='confirm-password' placeholder="Повторите пароль" />
+      <MyInput onChange={(e) => userInfo(e)} type="text" name='sureName' placeholder="Фамилия*" value={user.sureName} />
+      <MyInput onChange={(e) => userInfo(e)} type="text" name='firstName' placeholder="Имя*" value={user.firstName} />
+      <MyInput onChange={(e) => userInfo(e)} type="text" name='secondName' placeholder="Отчество" value={user.secondName} />
+      <MyInput onChange={(e) => userInfo(e)} type="email" name='email' placeholder="Email*" value={user.email} />
+      <MyInput onChange={(e) => userInfo(e)} type="password" name='password' placeholder="Пароль*" value={user.password} />
+      <MyInput type="password" name='confirm-password' id='confirm-password' placeholder="Повторите пароль*" />
       <MyButton onClick={formSubmit}>Зарегистрироваться</MyButton>
     </form>
   );

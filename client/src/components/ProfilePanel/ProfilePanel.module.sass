@@ -15,16 +15,18 @@
     height: 40px
   span
     font-size: 14px
-  .logout
+  .modal
     position: absolute
-    bottom: -30px
+    bottom: -90px
     border: $title-background 1px solid
-    right: 28px
-    padding: 5px 25px
+    right: 0px
+    padding: 7px 25px
     box-shadow: 5px 5px 5px #000
     display: none
     background: #fff
     &.active
-      display: block
+      display: flex
+      flex-direction: column
+      row-gap: 10px
     & span:hover
       color: $redlike-color

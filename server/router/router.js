@@ -11,6 +11,7 @@ router.post('/registration',
   body('password').isLength({ min: 3, max: 32 }),
   async (req, res) => {
     try {
+      console.log(req.body.name);
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         console.log(errors.array());
@@ -54,7 +55,7 @@ router.post('/login', async (req, res) => {
     const result = await tokenService.saveToken(userDto.id, tokens.refresh)
 
     if (isPassEquals) {
-      res.cookie('refresh', tokens.refresh).json({ name: user.name, access: tokens.access })
+      res.cookie('refresh', tokens.refresh).json({ name: user.name, access: tokens.access, id: user.id })
     }
 
 
@@ -75,9 +76,7 @@ router.post('/logout', async (req, res) => {
 
 router.get('/refresh', async (req, res) => {
   const { refresh } = req.cookies;
-  console.log(refresh);
   const userData = tokenService.validateRefreshToken(refresh);
-  console.log(userData);
   const tokenFromDb = await tokenModel.findOne({ refresh });
   if (!userData || !tokenFromDb) {
     res.status(500).json({ message: 'Мужичок\девчуля, ты не авторизован\а' })
@@ -87,7 +86,28 @@ router.get('/refresh', async (req, res) => {
   const tokens = tokenService.generateToken({ ...userDto });
   await tokenService.saveToken(userDto.id, tokens.refresh)
   res.cookie('refresh', tokens.refresh, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
-  res.json({...tokens, user: userDto})
+  res.json({ ...tokens, user: userDto })
+})
+
+router.patch('/update', async (req, res) => {
+  try {
+    const user = await User.findById(req.body.id);
+
+    const newUser = { ...req.body }
+    newUser.name = `${newUser.sureName || user.name.split(' ')[0]} ${newUser.firstName || user.name.split(' ')[1]} ${ newUser.secondName || user.name.split(' ')[2]}`
+    
+    if (req.body.password) {
+      const newPassword = req.body.password
+      newUser.password = await bcrypt.hash(newPassword, 3)
+    }
+
+    Object.assign(user, newUser)
+    user.save()
+    
+    res.json({user})
+  } catch (e) {
+    console.log(e);
+  }
 })
 
 module.exports = router
