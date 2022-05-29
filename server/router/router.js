@@ -5,6 +5,29 @@ const User = require('../models/user-model');
 const UserDto = require('../dtos/user-dto');
 const tokenService = require('../services/token-service');
 const tokenModel = require('../models/token-model');
+const avatarModel = require('../models/avatar-model');
+
+
+
+const path = require('path')
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'router/avatars')
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({ storage: storage })
+
+router.post('/upload', upload.single('avatar'), async (req, res) => {
+  console.log('req.body', req.body);
+  const avatar = await avatarModel.create({ name: req.file.filename })
+  console.log('req.file', req.file);
+  res.send(req.file)
+})
 
 router.post('/registration',
   body('email').isEmail(),
@@ -94,8 +117,8 @@ router.patch('/update', async (req, res) => {
     const user = await User.findById(req.body.id);
 
     const newUser = { ...req.body }
-    newUser.name = `${newUser.sureName || user.name.split(' ')[0]} ${newUser.firstName || user.name.split(' ')[1]} ${ newUser.secondName || user.name.split(' ')[2]}`
-    
+    newUser.name = `${newUser.sureName || user.name.split(' ')[0]} ${newUser.firstName || user.name.split(' ')[1]} ${newUser.secondName || user.name.split(' ')[2]}`
+
     if (req.body.password) {
       const newPassword = req.body.password
       newUser.password = await bcrypt.hash(newPassword, 3)
@@ -103,8 +126,8 @@ router.patch('/update', async (req, res) => {
 
     Object.assign(user, newUser)
     user.save()
-    
-    res.json({user})
+
+    res.json({ user })
   } catch (e) {
     console.log(e);
   }
