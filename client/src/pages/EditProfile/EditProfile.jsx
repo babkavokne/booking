@@ -11,12 +11,22 @@ import cl from './EditProfile.module.sass'
 const EditProfile = () => {
   const dispatch = useDispatch()
   const fullName = localStorage.getItem('username').split(' ')
+  const [img, setImg] = useState(null)
   const [user, setUser] = useState({
     id: localStorage.getItem('id')
   })
 
   const userInfo = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
+  }
+
+  const userFile = async (e) => {
+    setImg(e.target.files[0])
+    const data = new FormData()
+    console.log(img);
+    data.append('avatar', img)
+    const res = await $api.post('/upload', data);
+    console.log('res', res);
   }
 
   const formSubmit = async () => {
@@ -42,6 +52,7 @@ const EditProfile = () => {
               <MyInput onChange={(e) => userInfo(e)} type="email" name='email' placeholder="Новый email" />
               <MyInput onChange={(e) => userInfo(e)} type="password" name='password' placeholder="Новый пароль" />
               <MyInput type="password" name='confirm-password' id='confirm-password' placeholder="Повторите пароль" />
+              <MyInput onChange={e => userFile(e)} type="file" name='avatar' id='avataravatar' />
               <MyButton onClick={() => formSubmit()}>Сохранить изменения</MyButton>
             </form>
           </div>

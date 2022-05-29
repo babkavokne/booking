@@ -1,5 +1,5 @@
 import React from 'react';
-import avatar from '../../static/images/man-profile.svg';
+// import avatar from '../../static/images/man-profile.svg';
 import camera from '../../static/icons/icon-camera200.png';
 import arrow from '../../static/icons/chevron-down.svg';
 import cart from '../../static/icons/shopping-cart.svg';
@@ -13,6 +13,7 @@ import $api from '../../http/index';
 
 const Profilepanel = () => {
   const [isShown, setShown] = useState(false)
+  const [avatar, setAvatar] = useState(null)
   let isAuth = useSelector((state) => state.auth.isAuth)
   let user = useSelector((state) => state.auth.fullName || '')
   const dispatch = useDispatch();
@@ -33,12 +34,16 @@ const Profilepanel = () => {
       <div onClick={() => showModal()} className={cl.panel}>
         {isAuth ? (
           <>
-            <img src={avatar} alt="User avatar: Image" className={cl.avatar} />
+            {avatar ?
+              <img src={avatar} alt="User avatar: Image" className={cl.avatar} />
+              :
+              <img src={avatar} alt="User avatar: Image" className={cl.avatar} />
+            }
             <span>{user.split(' ')[1]}</span>
             <img src={arrow} alt="Panel arrow: Icon" />
             <div className={`${cl.modal} ${isShown ? cl.active : ''}`}>
               <span onClick={() => exit()}>Выйти</span>
-              <NavLink to='/editProfile'><span>Редактировать профиль</span></NavLink> 
+              <NavLink to='/editProfile'><span>Редактировать профиль</span></NavLink>
             </div>
           </>
         ) : (
