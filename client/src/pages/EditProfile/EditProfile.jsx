@@ -5,8 +5,9 @@ import Navbar from '../../components/Navbar/Navbar';
 import $api from '../../http';
 import MyInput from '../Auth/components/MyInput/MyInput';
 import { useDispatch } from 'react-redux';
-import { nameChange } from '../../store/store'
+import { nameChange, avatarChange } from '../../store/store'
 import cl from './EditProfile.module.sass'
+import { useEffect } from 'react';
 
 const EditProfile = () => {
   const dispatch = useDispatch()
@@ -20,14 +21,26 @@ const EditProfile = () => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
 
-  const userFile = async (e) => {
-    setImg(e.target.files[0])
-    const data = new FormData()
-    console.log(img);
-    data.append('avatar', img)
-    const res = await $api.post('/upload', data);
-    console.log('res', res);
+  const userFile = async () => {
+    if (img) {
+      const data = new FormData()
+      console.log(img);
+      data.append('avatar', img)
+      data.append('id', localStorage.getItem('id'))
+      const res = await $api.post('/upload', data);
+      console.log('res', res);
+      const link = `http://localhost:5000/${res.data.filename}`
+      localStorage.setItem('avatar', link)
+      console.log('link', link);
+      dispatch(avatarChange(link))
+    } else {
+      console.log('Там фотки нет');
+    }
   }
+
+  useEffect(() => {
+    userFile()
+  }, [img])
 
   const formSubmit = async () => {
     const res = await $api.patch('/update', user)
@@ -52,7 +65,7 @@ const EditProfile = () => {
               <MyInput onChange={(e) => userInfo(e)} type="email" name='email' placeholder="Новый email" />
               <MyInput onChange={(e) => userInfo(e)} type="password" name='password' placeholder="Новый пароль" />
               <MyInput type="password" name='confirm-password' id='confirm-password' placeholder="Повторите пароль" />
-              <MyInput onChange={e => userFile(e)} type="file" name='avatar' id='avataravatar' />
+              <MyInput onChange={e => setImg(e.target.files[0])} type="file" name='avatar' id='avataravatar' />
               <MyButton onClick={() => formSubmit()}>Сохранить изменения</MyButton>
             </form>
           </div>

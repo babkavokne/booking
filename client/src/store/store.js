@@ -5,7 +5,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   isAuth: localStorage.getItem('isAuth') || false,
   fullName: localStorage.getItem('username') || '',
-  isLoading: false
+  isLoading: false,
+  avatarLink: localStorage.getItem('avatar') || ''
 }
 
 export const authSlice = createSlice({
@@ -25,11 +26,14 @@ export const authSlice = createSlice({
     },
     nameChange: (state, action) => {
       state.fullName = action.payload;
+    },
+    avatarChange: (state, action) => {
+      state.avatarLink = action.payload;
     }
   },
 })
 
-export const { login, logout, loading, nameChange } = authSlice.actions
+export const { login, logout, loading, nameChange, avatarChange } = authSlice.actions
 
 const store = configureStore({
   reducer: {

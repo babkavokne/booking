@@ -1,5 +1,4 @@
 import React from 'react';
-// import avatar from '../../static/images/man-profile.svg';
 import camera from '../../static/icons/icon-camera200.png';
 import arrow from '../../static/icons/chevron-down.svg';
 import cart from '../../static/icons/shopping-cart.svg';
@@ -13,11 +12,10 @@ import $api from '../../http/index';
 
 const Profilepanel = () => {
   const [isShown, setShown] = useState(false)
-  const [avatar, setAvatar] = useState(null)
-  let isAuth = useSelector((state) => state.auth.isAuth)
+  let auth = useSelector((state) => state.auth)
   let user = useSelector((state) => state.auth.fullName || '')
   const dispatch = useDispatch();
-
+  console.log('avatarLink', auth.avatarLink);
   const showModal = () => {
     setShown(!isShown)
   }
@@ -30,14 +28,14 @@ const Profilepanel = () => {
 
   return (
     <>
-      {isAuth ? <img src={cart} alt="Icon of shopping-cart: Icon" /> : null}
+      {auth.isAuth ? <img src={cart} alt="Icon of shopping-cart: Icon" /> : null}
       <div onClick={() => showModal()} className={cl.panel}>
-        {isAuth ? (
+        {auth.isAuth ? (
           <>
-            {avatar ?
-              <img src={avatar} alt="User avatar: Image" className={cl.avatar} />
+            {auth.avatarLink ?
+              <img src={auth.avatarLink} alt="User avatar: Image" className={cl.avatar} />
               :
-              <img src={avatar} alt="User avatar: Image" className={cl.avatar} />
+              <img src={camera} alt="User avatar: Image" className={cl.avatar} />
             }
             <span>{user.split(' ')[1]}</span>
             <img src={arrow} alt="Panel arrow: Icon" />

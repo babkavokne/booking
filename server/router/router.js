@@ -5,7 +5,8 @@ const User = require('../models/user-model');
 const UserDto = require('../dtos/user-dto');
 const tokenService = require('../services/token-service');
 const tokenModel = require('../models/token-model');
-const avatarModel = require('../models/avatar-model');
+const AvatarModel = require('../models/avatar-model');
+const mongoose = require('mongoose');
 
 
 
@@ -23,8 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 router.post('/upload', upload.single('avatar'), async (req, res) => {
-  console.log('req.body', req.body);
-  const avatar = await avatarModel.create({ name: req.file.filename })
+  const avatar = await AvatarModel.create({ name: req.file.filename, user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
   console.log('req.file', req.file);
   res.send(req.file)
 })
@@ -67,18 +67,21 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body
     const user = await User.findOne({ email });
-
+    console.log('user', user);
     if (!user) {
       throw new Error('Нет такого :(')
     }
+
 
     const isPassEquals = await bcrypt.compare(password, user.password)
     const userDto = new UserDto(user);
     const tokens = tokenService.generateToken({ ...userDto });
     const result = await tokenService.saveToken(userDto.id, tokens.refresh)
+    const avatar = await AvatarModel.findOne({ user: user._id, isAvatar: true })
+    console.log('avatar', avatar);
 
     if (isPassEquals) {
-      res.cookie('refresh', tokens.refresh).json({ name: user.name, access: tokens.access, id: user.id })
+      res.cookie('refresh', tokens.refresh).json({ name: user.name, access: tokens.access, id: user.id, avatar: avatar?.name})
     }
 
 

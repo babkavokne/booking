@@ -22,6 +22,10 @@ const Login = (props) => {
       localStorage.setItem('isAuth', true)
       localStorage.setItem('token', res.data.access)
       localStorage.setItem('id', res.data.id)
+      if (res.data.avatar) {
+        const link = `http://localhost:5000/${res.data.avatar}`
+        localStorage.setItem('avatar', link)
+      }
     }
   }
 
