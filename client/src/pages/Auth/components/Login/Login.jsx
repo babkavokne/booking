@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MyButton from '../../../../components/MyButton/MyButton';
 import MyInput from '../MyInput/MyInput';
 import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../../../../store/store'
+import { login, avatarChange } from '../../../../store/store'
 import $api from '../../../../http/index'
 import cl from './Login.module.sass'
 
@@ -24,7 +24,8 @@ const Login = (props) => {
       localStorage.setItem('id', res.data.id)
       if (res.data.avatar) {
         const link = `http://localhost:5000/${res.data.avatar}`
-        localStorage.setItem('avatar', link)
+        localStorage.setItem('avatar', link);
+        dispatch(avatarChange( localStorage.getItem('avatar')))
       }
     }
   }

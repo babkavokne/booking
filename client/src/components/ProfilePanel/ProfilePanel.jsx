@@ -5,7 +5,7 @@ import cart from '../../static/icons/shopping-cart.svg';
 import MyButton from '../MyButton/MyButton';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../store/store';
+import { logout, avatarChange } from '../../store/store';
 import { useState } from 'react';
 import cl from './ProfilePanel.module.sass';
 import $api from '../../http/index';
@@ -22,6 +22,7 @@ const Profilepanel = () => {
 
   const exit = async () => {
     dispatch(logout())
+    dispatch(avatarChange(''))
     localStorage.clear()
     const result = await $api.post('/logout')
   }

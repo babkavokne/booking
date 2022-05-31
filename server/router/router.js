@@ -24,6 +24,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 router.post('/upload', upload.single('avatar'), async (req, res) => {
+  const oldAvatar = await AvatarModel.findOne({user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
+  if (oldAvatar) {
+    console.log('old Avatar', oldAvatar);
+    oldAvatar.isAvatar = false;
+    oldAvatar.save()
+  }
   const avatar = await AvatarModel.create({ name: req.file.filename, user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
   console.log('req.file', req.file);
   res.send(req.file)
@@ -78,10 +84,9 @@ router.post('/login', async (req, res) => {
     const tokens = tokenService.generateToken({ ...userDto });
     const result = await tokenService.saveToken(userDto.id, tokens.refresh)
     const avatar = await AvatarModel.findOne({ user: user._id, isAvatar: true })
-    console.log('avatar', avatar);
 
     if (isPassEquals) {
-      res.cookie('refresh', tokens.refresh).json({ name: user.name, access: tokens.access, id: user.id, avatar: avatar?.name})
+      res.cookie('refresh', tokens.refresh).json({ name: user.name, access: tokens.access, id: user.id, avatar: avatar?.name })
     }
 
 
