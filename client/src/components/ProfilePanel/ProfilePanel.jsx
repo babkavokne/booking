@@ -43,6 +43,7 @@ const Profilepanel = () => {
             <div className={`${cl.modal} ${isShown ? cl.active : ''}`}>
               <span onClick={() => exit()}>Выйти</span>
               <NavLink to='/editProfile'><span>Редактировать профиль</span></NavLink>
+              <NavLink to='/createOffer'><span>Создать предложение</span></NavLink>
             </div>
           </>
         ) : (

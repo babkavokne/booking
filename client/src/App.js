@@ -8,6 +8,7 @@ import Auth from './pages/Auth/Auth';
 import { useEffect } from 'react';
 import $api from './http';
 import EditProfile from './pages/EditProfile/EditProfile';
+import CreateOffer from './pages/CreateOffer/CreateOffer';
 
 function App() {
   let auth = useSelector((state) => state.auth)
@@ -34,6 +35,7 @@ function App() {
           <Route path='/' element={<Main />} />
           <Route path='/calc' element={<Calc />} />
           <Route path='/editProfile' element={<EditProfile />} />
+          <Route path='/createOffer' element={<CreateOffer />} />
           <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
         :

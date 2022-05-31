@@ -41,9 +41,9 @@ const Footer = () => {
             <div className={cl.social}>
               <div className={cl.header}>Social Network</div>
               <div className={cl.icons}>
-                <img src={facebook} alt="" />
-                <img src={youtube} alt="" />
-                <img src={insta} alt="" />
+                <a href="https://vk.com/jean_gaben"><img src={facebook} alt="" /></a>
+                <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley'><img src={youtube} alt="" /></a>
+                <a href="https://www.instagram.com/firstfraerindavilage/"><img src={insta} alt="" /></a>
               </div>
             </div>
           </div>

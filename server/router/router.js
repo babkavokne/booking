@@ -12,18 +12,28 @@ const mongoose = require('mongoose');
 
 const path = require('path')
 const multer = require('multer');
-const storage = multer.diskStorage({
+const avatarStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'router/avatars')
+    cb(null, 'static/avatars')
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname))
   }
 })
 
-const upload = multer({ storage: storage })
+const imageStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'static/images')
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname))
+  }
+})
 
-router.post('/upload', upload.single('avatar'), async (req, res) => {
+const avatarUpload = multer({ storage: avatarStorage })
+const imageUpload = multer({ storage: imageStorage })
+
+router.post('/upload', avatarUpload.single('avatar'), async (req, res) => {
   const oldAvatar = await AvatarModel.findOne({user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
   if (oldAvatar) {
     console.log('old Avatar', oldAvatar);

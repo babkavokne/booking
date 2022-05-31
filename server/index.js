@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 80;
 const app = express();
 
-app.use(express.static(`${__dirname}/router/avatars`))
+app.use(express.static(`${__dirname}/static/avatars`))
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
