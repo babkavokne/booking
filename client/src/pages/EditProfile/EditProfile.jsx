@@ -27,7 +27,7 @@ const EditProfile = () => {
       console.log(img);
       data.append('avatar', img)
       data.append('id', localStorage.getItem('id'))
-      const res = await $api.post('/upload', data);
+      const res = await $api.post('/uploadAvatar', data);
       console.log('res', res);
       const link = `http://localhost:5000/${res.data.filename}`
       localStorage.setItem('avatar', link)
@@ -65,7 +65,7 @@ const EditProfile = () => {
               <MyInput onChange={(e) => userInfo(e)} type="email" name='email' placeholder="Новый email" />
               <MyInput onChange={(e) => userInfo(e)} type="password" name='password' placeholder="Новый пароль" />
               <MyInput type="password" name='confirm-password' id='confirm-password' placeholder="Повторите пароль" />
-              <MyInput onChange={e => setImg(e.target.files[0])} type="file" name='avatar' id='avataravatar' />
+              <input className={cl.file} onChange={e => setImg(e.target.files[0])} type="file" name='avatar' id='avatar' />
               <MyButton onClick={() => formSubmit()}>Сохранить изменения</MyButton>
             </form>
           </div>

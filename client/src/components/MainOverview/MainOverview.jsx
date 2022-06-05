@@ -8,9 +8,10 @@ import ReactStars from 'react-stars'
 import cl from './MainOverview.module.sass'
 
 const MainOverview = () => {
-  const ratingChanged = (newRating) => {
+  const changeRating = (newRating) => {
     console.log(newRating)
   }
+  
   return (
     <div className='wrapper'>
       <div className='container'>
@@ -20,7 +21,7 @@ const MainOverview = () => {
             <div className={cl.stars}>
               <ReactStars
                 count={5}
-                onChange={ratingChanged}
+                onChange={changeRating}
                 size={24}
                 color2={'#ffd700'}
                 value={2.5}

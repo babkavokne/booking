@@ -4,7 +4,7 @@ import cl from './MyInput.module.sass'
 const MyInput = (props) => {
   return (
     <input
-      className={cl.myInput}
+      className={`${cl.myInput} ${props.className}`}
       type={props.type}
       placeholder={props.placeholder}
       onChange={props.onChange}

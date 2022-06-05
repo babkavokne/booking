@@ -33,7 +33,7 @@ const imageStorage = multer.diskStorage({
 const avatarUpload = multer({ storage: avatarStorage })
 const imageUpload = multer({ storage: imageStorage })
 
-router.post('/upload', avatarUpload.single('avatar'), async (req, res) => {
+router.post('/uploadAvatar', avatarUpload.single('avatar'), async (req, res) => {
   const oldAvatar = await AvatarModel.findOne({user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
   if (oldAvatar) {
     console.log('old Avatar', oldAvatar);
