@@ -33,15 +33,20 @@ const imageStorage = multer.diskStorage({
 const avatarUpload = multer({ storage: avatarStorage })
 const imageUpload = multer({ storage: imageStorage })
 
+router.post('/createOffer', async (req, res) => {
+  
+})
+
 router.post('/uploadAvatar', avatarUpload.single('avatar'), async (req, res) => {
-  const oldAvatar = await AvatarModel.findOne({user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
+  const oldAvatar = await AvatarModel.findOne({ user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
   if (oldAvatar) {
     console.log('old Avatar', oldAvatar);
     oldAvatar.isAvatar = false;
     oldAvatar.save()
   }
-  const avatar = await AvatarModel.create({ name: req.file.filename, user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
   console.log('req.file', req.file);
+
+  const avatar = await AvatarModel.create({ name: req.file.filename, user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
   res.send(req.file)
 })
 

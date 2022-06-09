@@ -11,8 +11,7 @@ const OfferSchema = new Schema({
   phone: {type: Number, required: true},
   rooms: {type: Number, required: true},
   description: String, 
-  highlights: [String],
-  
+  highlights: [String]
 })
 
 module.exports = model('NewOffer', OfferSchema);

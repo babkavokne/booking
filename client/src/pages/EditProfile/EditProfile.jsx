@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { nameChange, avatarChange } from '../../store/store'
 import cl from './EditProfile.module.sass'
 import { useEffect } from 'react';
+import MyFileLoader from '../../components/MyFileLoader/MyFileLoader';
 
 const EditProfile = () => {
   const dispatch = useDispatch()
@@ -65,7 +66,7 @@ const EditProfile = () => {
               <MyInput onChange={(e) => userInfo(e)} type="email" name='email' placeholder="Новый email" />
               <MyInput onChange={(e) => userInfo(e)} type="password" name='password' placeholder="Новый пароль" />
               <MyInput type="password" name='confirm-password' id='confirm-password' placeholder="Повторите пароль" />
-              <input className={cl.file} onChange={e => setImg(e.target.files[0])} type="file" name='avatar' id='avatar' />
+              <MyFileLoader onChange={e => { setImg(e.target.files[0]); console.log('e.target.files', e.target.files); }} name="name" id="name" />
               <MyButton onClick={() => formSubmit()}>Сохранить изменения</MyButton>
             </form>
           </div>
