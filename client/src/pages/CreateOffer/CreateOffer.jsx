@@ -16,27 +16,12 @@ const CreateOffer = () => {
   }
 
   const createOffer = (e) => {
-    console.log('111');
+    console.log(img)
   }
 
   const previewPhoto = (e) => {
-    {    
-      // let file = e.target.files[0];
-      // let reader = new FileReader();
 
-      // reader.readAsDataURL(file);
-
-      // reader.onload = () => {
-      //   let img = document.createElement('img');
-      //   img.src = reader.result;
-      //   document.querySelector(`.${cl.preview}`).appendChild(img)
-    }
-    console.log(e.target.files);
-    const imgArr = []
-    console.log('imgArr', imgArr);
     setImg([...img, ...e.target.files])
-    console.log(img);
-
 
     for (let i = 0; i < e.target.files.length; i++) {
       let reader = new FileReader();
@@ -44,36 +29,18 @@ const CreateOffer = () => {
       reader.readAsDataURL(e.target.files[i]);
 
       reader.onload = () => {
-        let img = document.createElement('img');
-        img.src = reader.result;
-        document.querySelector(`.${cl.preview}`).appendChild(img)
+        let newImg = document.createElement('img');
+        newImg.onclick = () => {
+          const modal = document.querySelector(`.${cl.modal}`)
+          modal.style.display = 'flex'
+          modal.onclick = () => modal.style.display = 'none'
+          document.querySelector(`#${cl.prev}`).src = `${newImg.src}`
+        }
+        newImg.src = reader.result;
+        document.querySelector(`.${cl.preview}`).appendChild(newImg)
       }
     }
     e.target.value = ''
-  }
-  {
-    // if (e.target.files) {
-
-    //   console.log(' e.target.files', e.target.files);
-    //   for (let i = 0; i < e.target.files.length; i++) {
-    //     const reader = new FileReader();
-
-    //     // console.log('e.target.result', e.target.result);
-    //     reader.onload = function (e) {
-    //       $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-    //     }
-
-
-    //   }
-
-    //   // reader.onload = (e) => {
-
-    //   // }
-    // }
-
-    // useEffect(() => {
-    //   previewPhoto()
-    // }, [])
   }
 
   useEffect(() => {
@@ -106,8 +73,12 @@ const CreateOffer = () => {
           <MyInput type='text' name='Включенные услуги через запятую' placeholder='Включенные услуги через запятую' onChange={(e) => changeOffer(e)} />
           <label htmlFor='file'>Добавьте фото</label>
           <MyFileLoader name='file' className={cl.file} multiple onChange={(e) => previewPhoto(e)} img={img.length} />
-          <div className={cl.preview}></div>
-          <MyButton onClick={() => console.log(img)}>Создать предложение</MyButton>
+          <div className={cl.preview}>
+            <div className={cl.modal}>
+              <img id={cl.prev} src="#" alt="" />
+            </div>
+          </div>
+          <MyButton onClick={(e) => createOffer(e)}>Создать предложение</MyButton>
         </div>
       </div>
     </>
