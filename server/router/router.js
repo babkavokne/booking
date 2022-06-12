@@ -35,7 +35,7 @@ const avatarUpload = multer({ storage: avatarStorage })
 const imageUpload = multer({ storage: imageStorage })
 
 router.post('/createOffer', imageUpload.array('images'), async (req, res) => {
-  console.log(req.body);
+  console.log('???',JSON.parse(req.body.offer));
   console.log(req.files);
 })
 

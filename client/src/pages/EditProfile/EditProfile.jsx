@@ -66,7 +66,7 @@ const EditProfile = () => {
               <MyInput onChange={(e) => userInfo(e)} type="email" name='email' placeholder="Новый email" />
               <MyInput onChange={(e) => userInfo(e)} type="password" name='password' placeholder="Новый пароль" />
               <MyInput type="password" name='confirm-password' id='confirm-password' placeholder="Повторите пароль" />
-              <MyFileLoader onChange={e => { setImg(e.target.files[0]); console.log('e.target.files', e.target.files); }} name="name" id="name" img={0}/>
+              <MyFileLoader onChange={e => setImg(e.target.files[0])} name="name" id="name" img={0} />
               <MyButton onClick={() => formSubmit()}>Сохранить изменения</MyButton>
             </form>
           </div>

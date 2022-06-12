@@ -20,15 +20,18 @@ const CreateOffer = () => {
 
   const createOffer = async () => {
     console.log(img)
+    console.log('length', img.length)
     const data = new FormData();
-    data.append('images', img);
-    // data.append('offer', offer);
+    for (let i = 0; i < img.length; i++) {
+      data.append('images', img[i]);
+    }
+    data.append('offer', JSON.stringify(offer))
     const res = await $api.post('/createOffer', data)
     console.log('res', res);
   }
 
   const previewPhoto = (e) => {
-
+    console.log('e.target.files', e.target.files);
     setImg([...img, ...e.target.files])
 
     for (let i = 0; i < e.target.files.length; i++) {
