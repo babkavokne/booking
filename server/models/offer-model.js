@@ -14,4 +14,4 @@ const OfferSchema = new Schema({
   highlights: [String]
 })
 
-module.exports = model('NewOffer', OfferSchema);
+module.exports = model('Offer', OfferSchema);

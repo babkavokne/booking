@@ -14,8 +14,11 @@ const CreateOffer = () => {
   })
   const [img, setImg] = useState([])
   const changeOffer = (e) => {
-    setOffer({ ...offer, [e.target.name]: e.target.value })
-    console.log('select', e.target.value);
+    ['rooms', 'guests', 'lowestPrice', 'phone'].includes(e.target.name) ? (
+      setOffer({ ...offer, [e.target.name]: Number(e.target.value) })
+    ) : (
+      setOffer({ ...offer, [e.target.name]: e.target.value })
+    )
   }
 
   const createOffer = async () => {
@@ -89,7 +92,7 @@ const CreateOffer = () => {
               <img id={cl.prev} src="#" alt="" />
             </div>
           </div>
-          <MyButton onClick={() => { createOffer(); console.log('img', img) }}>Создать предложение</MyButton>
+          <MyButton onClick={() => {createOffer(); console.log('offer', offer) }}>Создать предложение</MyButton>
         </div>
       </div>
     </>

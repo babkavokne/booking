@@ -6,8 +6,9 @@ const UserDto = require('../dtos/user-dto');
 const tokenService = require('../services/token-service');
 const tokenModel = require('../models/token-model');
 const AvatarModel = require('../models/avatar-model');
+const OfferModel = require('../models/offer-model');
+const OfferImageModel  = require('../models/offer-images-model')
 const mongoose = require('mongoose');
-
 
 
 const path = require('path')
@@ -35,8 +36,19 @@ const avatarUpload = multer({ storage: avatarStorage })
 const imageUpload = multer({ storage: imageStorage })
 
 router.post('/createOffer', imageUpload.array('images'), async (req, res) => {
-  console.log('???',JSON.parse(req.body.offer));
-  console.log(req.files);
+  const offer = JSON.parse(req.body.offer)
+  offer.rating = 0;
+  offer.numberOfVotes = 0;
+  console.log('???', offer);
+  console.log('files!!! length', req.files.length);
+  const newOffer = await OfferModel.create(offer)
+  
+  console.log('aAAA', req.files.map((file) => {file.offer = newOffer._id}));
+
+  const offerImages = await OfferImageModel.create(req.files)
+  console.log('newOffer', newOffer);
+  console.log('offerImages', offerImages);
+  
 })
 
 router.post('/uploadAvatar', avatarUpload.single('avatar'), async (req, res) => {
