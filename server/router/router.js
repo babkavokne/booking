@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 
 const path = require('path')
 const multer = require('multer');
+
 const avatarStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'static/avatars')
@@ -33,8 +34,9 @@ const imageStorage = multer.diskStorage({
 const avatarUpload = multer({ storage: avatarStorage })
 const imageUpload = multer({ storage: imageStorage })
 
-router.post('/createOffer', async (req, res) => {
-  
+router.post('/createOffer', imageUpload.array('images'), async (req, res) => {
+  console.log(req.body);
+  console.log(req.files);
 })
 
 router.post('/uploadAvatar', avatarUpload.single('avatar'), async (req, res) => {

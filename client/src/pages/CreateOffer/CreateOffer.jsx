@@ -4,19 +4,27 @@ import { useState } from 'react';
 import MyButton from '../../components/MyButton/MyButton';
 import MyFileLoader from '../../components/MyFileLoader/MyFileLoader';
 import Navbar from '../../components/Navbar/Navbar';
+import $api from '../../http';
 import MyInput from '../Auth/components/MyInput/MyInput';
 import cl from './CreateOffer.module.sass'
 
 const CreateOffer = () => {
-  const [offer, setOffer] = useState({})
+  const [offer, setOffer] = useState({
+    creator: localStorage.getItem('id')
+  })
   const [img, setImg] = useState([])
   const changeOffer = (e) => {
     setOffer({ ...offer, [e.target.name]: e.target.value })
     console.log('select', e.target.value);
   }
 
-  const createOffer = (e) => {
+  const createOffer = async () => {
     console.log(img)
+    const data = new FormData();
+    data.append('images', img);
+    // data.append('offer', offer);
+    const res = await $api.post('/createOffer', data)
+    console.log('res', res);
   }
 
   const previewPhoto = (e) => {
@@ -62,15 +70,15 @@ const CreateOffer = () => {
             <option value="Рестораны">Рестораны</option>
             <option value="Мероприятия">Мероприятия</option>
           </select>
-          <MyInput type='text' placeholder='Название' name='название' onChange={(e) => changeOffer(e)} />
+          <MyInput type='text' placeholder='Название' name='offerName' onChange={(e) => changeOffer(e)} />
           <div className={cl.quantity}>
-            <MyInput className={cl.amount} type='text' name='Кол-во комнат' placeholder='Кол-во комнат' onChange={(e) => changeOffer(e)} />
-            <MyInput className={cl.amount} type='text' name='Кол-во гостей' placeholder='Кол-во гостей' onChange={(e) => changeOffer(e)} />
+            <MyInput className={cl.amount} type='text' name='rooms' placeholder='Кол-во комнат' onChange={(e) => changeOffer(e)} />
+            <MyInput className={cl.amount} type='text' name='guests' placeholder='Кол-во гостей' onChange={(e) => changeOffer(e)} />
           </div>
-          <MyInput type='text' name='Минимальная цена' placeholder='Минимальная цена' onChange={(e) => changeOffer(e)} />
-          <MyInput type='text' name='Телефон' placeholder='Телефон' onChange={(e) => changeOffer(e)} />
-          <MyInput type='text' name='Описание' placeholder='Описание' onChange={(e) => changeOffer(e)} />
-          <MyInput type='text' name='Включенные услуги через запятую' placeholder='Включенные услуги через запятую' onChange={(e) => changeOffer(e)} />
+          <MyInput type='text' name='lowestPrice' placeholder='Минимальная цена' onChange={(e) => changeOffer(e)} />
+          <MyInput type='text' name='phone' placeholder='Телефон' onChange={(e) => changeOffer(e)} />
+          <MyInput type='text' name='description' placeholder='Описание' onChange={(e) => changeOffer(e)} />
+          <MyInput type='text' name='highlights' placeholder='Включенные услуги через запятую' onChange={(e) => changeOffer(e)} />
           <label htmlFor='file'>Добавьте фото</label>
           <MyFileLoader name='file' className={cl.file} multiple onChange={(e) => previewPhoto(e)} img={img.length} />
           <div className={cl.preview}>
@@ -78,7 +86,7 @@ const CreateOffer = () => {
               <img id={cl.prev} src="#" alt="" />
             </div>
           </div>
-          <MyButton onClick={(e) => createOffer(e)}>Создать предложение</MyButton>
+          <MyButton onClick={() => { createOffer(); console.log('img', img) }}>Создать предложение</MyButton>
         </div>
       </div>
     </>
