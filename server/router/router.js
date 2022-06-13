@@ -49,6 +49,7 @@ router.post('/createOffer', imageUpload.array('images'), async (req, res) => {
   console.log('newOffer', newOffer);
   console.log('offerImages', offerImages);
   
+  res.json({message: 'offer has created'})
 })
 
 router.post('/uploadAvatar', avatarUpload.single('avatar'), async (req, res) => {

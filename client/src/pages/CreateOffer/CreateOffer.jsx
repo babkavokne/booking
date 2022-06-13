@@ -12,6 +12,7 @@ const CreateOffer = () => {
   const [offer, setOffer] = useState({
     creator: localStorage.getItem('id')
   })
+  const [status, setStatus] = useState(false);
   const [img, setImg] = useState([])
   const changeOffer = (e) => {
     ['rooms', 'guests', 'lowestPrice', 'phone'].includes(e.target.name) ? (
@@ -29,8 +30,8 @@ const CreateOffer = () => {
       data.append('images', img[i]);
     }
     data.append('offer', JSON.stringify(offer))
-    const res = await $api.post('/createOffer', data)
-    console.log('res', res);
+    const res = await $api.post('/createOffer', data) || 1
+    if (res.status === 200) setStatus(true)
   }
 
   const previewPhoto = (e) => {
@@ -92,6 +93,9 @@ const CreateOffer = () => {
               <img id={cl.prev} src="#" alt="" />
             </div>
           </div>
+          {status ? 
+            <h1>Предложение успешно создано!</h1> : null
+          }
           <MyButton onClick={() => {createOffer(); console.log('offer', offer) }}>Создать предложение</MyButton>
         </div>
       </div>
