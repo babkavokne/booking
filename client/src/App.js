@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import $api from './http';
 import EditProfile from './pages/EditProfile/EditProfile';
 import CreateOffer from './pages/CreateOffer/CreateOffer';
+import Home from './pages/Home/Home';
 
 function App() {
   let auth = useSelector((state) => state.auth)
@@ -32,7 +33,8 @@ function App() {
     <BrowserRouter>
       {auth.isAuth ?
         <Routes>
-          <Route path='/' element={<Main />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/main' element={<Main />} />
           <Route path='/calc' element={<Calc />} />
           <Route path='/editProfile' element={<EditProfile />} />
           <Route path='/createOffer' element={<CreateOffer />} />
@@ -40,7 +42,8 @@ function App() {
         </Routes>
         :
         <Routes>
-          <Route path='/' element={<Main />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/main' element={<Main />} />
           <Route path='/auth' element={<Auth />} />
           <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
