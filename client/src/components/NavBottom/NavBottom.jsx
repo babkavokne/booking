@@ -22,7 +22,7 @@ const Navbottom = (props) => {
             <Link to='/' className={cl.link}>Hotel Day Packages</Link>
             <Link to='/' className={cl.link}>Рестораны</Link>
             <Link to='/' className={cl.link}>Мероприятия</Link>
-            <Link to='/' className={cl.link}>О разработчике</Link>
+            <Link to='/aboutdeveloper' className={cl.link}>О разработчике</Link>
           </div>
         </div>
       </div>

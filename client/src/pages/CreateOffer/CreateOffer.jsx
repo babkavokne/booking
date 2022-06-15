@@ -59,7 +59,7 @@ const CreateOffer = () => {
   }
 
   useEffect(() => {
-    setOffer({ ...offer, offerType: 'Отели' })
+    setOffer({ ...offer, offerType: 'Жильё' })
   }, [])
 
   console.log('offer', offer);
@@ -71,13 +71,28 @@ const CreateOffer = () => {
         <div className={cl.createOffer}>
           <h1>Создать предложение</h1>
           <label htmlFor="types">Тип предложения?</label>
-          <select name="offerType" id="types" defaultValue={"Отели"} onChange={(e) => changeOffer(e)}>
-            <option value="Отели">Отели</option>
+          <select name="offerType" id="types" defaultValue={"Жильё"} onChange={(e) => changeOffer(e)}>
+            <option value="Жильё">Жильё</option>
             <option value="Активный отдых">Активный отдых</option>
             <option value="Рестораны">Рестораны</option>
             <option value="Мероприятия">Мероприятия</option>
           </select>
+          {offer.offerType == 'Жильё' ?
+            <>
+              <label htmlFor="allocationType">Тип предложения?</label>
+              <select name="allocationType" id="types" defaultValue={"Отели"} onChange={(e) => changeOffer(e)}>
+                <option value="Отели">Отели</option>
+                <option value="Апартаменты">Апартаменты</option>
+                <option value="Резорт">Резорт</option>
+                <option value="Вилла">Вилла</option>
+              </select>
+            </>
+            :
+            null
+          }
           <MyInput type='text' placeholder='Название' name='offerName' onChange={(e) => changeOffer(e)} />
+          <MyInput type='text' placeholder='Страна' name='country' onChange={(e) => changeOffer(e)} />
+          <MyInput type='text' placeholder='Город' name='city' onChange={(e) => changeOffer(e)} />
           <div className={cl.quantity}>
             <MyInput className={cl.amount} type='text' name='rooms' placeholder='Кол-во комнат' onChange={(e) => changeOffer(e)} />
             <MyInput className={cl.amount} type='text' name='guests' placeholder='Кол-во гостей' onChange={(e) => changeOffer(e)} />
@@ -93,10 +108,10 @@ const CreateOffer = () => {
               <img id={cl.prev} src="#" alt="" />
             </div>
           </div>
-          {status ? 
+          {status ?
             <h1>Предложение успешно создано!</h1> : null
           }
-          <MyButton onClick={() => {createOffer(); console.log('offer', offer) }}>Создать предложение</MyButton>
+          <MyButton onClick={() => { createOffer(); console.log('offer', offer) }}>Создать предложение</MyButton>
         </div>
       </div>
     </>

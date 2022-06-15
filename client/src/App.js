@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import $api from './http';
 import EditProfile from './pages/EditProfile/EditProfile';
 import CreateOffer from './pages/CreateOffer/CreateOffer';
+import AboutDeveloper from './pages/AboutDeveloper/AboutDeveloper';
 import Home from './pages/Home/Home';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path='/calc' element={<Calc />} />
           <Route path='/editProfile' element={<EditProfile />} />
           <Route path='/createOffer' element={<CreateOffer />} />
+          <Route path='/aboutdeveloper' element={<AboutDeveloper />} />
           <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
         :
