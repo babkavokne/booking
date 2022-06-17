@@ -7,7 +7,8 @@ const tokenService = require('../services/token-service');
 const tokenModel = require('../models/token-model');
 const AvatarModel = require('../models/avatar-model');
 const OfferModel = require('../models/offer-model');
-const OfferImageModel  = require('../models/offer-images-model')
+const CountryModel = require('../models/country-model');
+const OfferImageModel = require('../models/offer-images-model')
 const mongoose = require('mongoose');
 
 
@@ -42,14 +43,19 @@ router.post('/createOffer', imageUpload.array('images'), async (req, res) => {
   console.log('???', offer);
   console.log('files!!! length', req.files.length);
   const newOffer = await OfferModel.create(offer)
-  
-  console.log('aAAA', req.files.map((file) => {file.offer = newOffer._id}));
+  const country = await CountryModel.findOne({ country: newOffer.coutry })
+  console.log('country', country);
+  if (!country) {
+    const newCountry = await CountryModel.create({ country: newOffer.country })
+    console.log('newCountry', newCountry);
+  }
+  console.log('aAAA', req.files.map((file) => { file.offer = newOffer._id }));
 
   const offerImages = await OfferImageModel.create(req.files)
   console.log('newOffer', newOffer);
   console.log('offerImages', offerImages);
-  
-  res.json({message: 'offer has created'})
+
+  res.json({ message: 'offer has created' })
 })
 
 router.post('/uploadAvatar', avatarUpload.single('avatar'), async (req, res) => {
@@ -63,6 +69,11 @@ router.post('/uploadAvatar', avatarUpload.single('avatar'), async (req, res) => 
 
   const avatar = await AvatarModel.create({ name: req.file.filename, user: new mongoose.Types.ObjectId(req.body.id), isAvatar: true })
   res.send(req.file)
+})
+
+router.get('/getCountries', async (req, res) => {
+  const countries = await CountryModel.find();
+  res.send({countries})
 })
 
 router.post('/registration',

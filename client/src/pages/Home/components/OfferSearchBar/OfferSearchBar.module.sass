@@ -17,3 +17,13 @@
   .button
     flex: 19%
     height: 40px
+
+@media (max-width: 680px)
+  .search
+    flex-wrap: wrap
+    row-gap: 5px
+    .input
+      flex: calc(50% - 3px) 0
+      &:nth-child(1)
+        flex: 100% 0
+        
