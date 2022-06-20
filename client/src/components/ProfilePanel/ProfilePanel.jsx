@@ -15,7 +15,6 @@ const Profilepanel = () => {
   let auth = useSelector((state) => state.auth)
   let user = useSelector((state) => state.auth.fullName || '')
   const dispatch = useDispatch();
-  console.log('avatarLink', auth.avatarLink);
   const showModal = () => {
     setShown(!isShown)
   }

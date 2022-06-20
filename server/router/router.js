@@ -76,6 +76,12 @@ router.get('/getCountries', async (req, res) => {
   res.send({countries})
 })
 
+router.get('/openCountry/:countryName', async (req, res) => {
+  console.log('getOffers', req.params.countryName);
+
+  res.json({message: 'k then'})
+})
+
 router.post('/registration',
   body('email').isEmail(),
   body('password').isLength({ min: 3, max: 32 }),

@@ -19,7 +19,6 @@ function App() {
   const chekAuth = async () => {
     dispatch(loading(true))
     const response = await $api.get('/refresh')
-    console.log(response);
     localStorage.setItem('token', response.data.access)
     dispatch(loading(false))
   }

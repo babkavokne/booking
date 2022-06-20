@@ -21,7 +21,6 @@ const Home = () => {
             <h2 className={cl.subheader}>Ищите спецпредложения на отели, дома и другие варианты.</h2>
             <OfferSearchBar className={cl.searchbar} />
             <OpenCountry></OpenCountry>
-            <MyInput></MyInput>
           </div>
         </div>
       </div>
