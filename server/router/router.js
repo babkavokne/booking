@@ -73,13 +73,14 @@ router.post('/uploadAvatar', avatarUpload.single('avatar'), async (req, res) => 
 
 router.get('/getCountries', async (req, res) => {
   const countries = await CountryModel.find();
-  res.send({countries})
+  res.send({ countries })
 })
 
 router.get('/openCountry/:countryName', async (req, res) => {
   console.log('getOffers', req.params.countryName);
-
-  res.json({message: 'k then'})
+  const countryOffers = await OfferModel.find({ country: req.params.countryName })
+  console.log('countryOffers', countryOffers);
+  res.json(countryOffers)
 })
 
 router.post('/registration',
