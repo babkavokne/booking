@@ -1,25 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import MyLoader from '../../../../components/MyLoader/MyLoader';
 import $api from '../../../../http';
 import cl from './OpenCountry.module.sass'
 
 const OpenCountry = (props) => {
-  const [countries, setCountries] = useState([])
-  const [country, setCountriy] = useState()
-
+  const [offers, setOffers] = useState()
+  // const [country, setCountry] = useState()
 
   const getCountries = async () => {
     const states = await $api.get('/getCountries/');
     console.log('states', states);
-    setCountries(states.data.countries.map(country => country.country));
-    setCountriy(countries[Math.floor(Math.random() * countries.length)]);
-    const data = 'Russia'
-    const res = await $api.get(`/openCountry/${data}`);
+    const countries = states.data.countries.map(country => country.country)
+    console.log('countries', countries);
 
-    console.log('getOffers res', res);
-    console.log('randomCountry', country);
+    const random = countries[Math.floor(Math.random() * countries.length)]
+    console.log('random', random);
+    const res = await $api.get(`/openCountry/${random}`);
+    console.log('getOffers res', res.data);
+
+    setOffers(res.data)
   }
-
-  console.log('countries', countries);
 
   useEffect(() => {
     getCountries()
@@ -27,7 +27,13 @@ const OpenCountry = (props) => {
 
   return (
     <div className={cl.open}>
-      {countries.length == 0 ? country : 'Нема'}
+      {offers ? (
+        <div className={cl.open}>
+          <h1>{offers[0].country} - откройте для себя эту страну!</h1>
+          {offers.map((offer, i) => <div key={i}>{offer.country}</div>)}
+        </div>
+      ) : (
+        <MyLoader />)}
     </div>
   );
 }
