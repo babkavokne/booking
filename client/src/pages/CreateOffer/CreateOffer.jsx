@@ -93,6 +93,7 @@ const CreateOffer = () => {
           <MyInput type='text' placeholder='Название' name='offerName' onChange={(e) => changeOffer(e)} />
           <MyInput type='text' placeholder='Страна' name='country' onChange={(e) => changeOffer(e)} />
           <MyInput type='text' placeholder='Город' name='city' onChange={(e) => changeOffer(e)} />
+          <MyInput type='text' placeholder='Адрес' name='adress' onChange={(e) => changeOffer(e)} />
           <div className={cl.quantity}>
             <MyInput className={cl.amount} type='text' name='rooms' placeholder='Кол-во комнат' onChange={(e) => changeOffer(e)} />
             <MyInput className={cl.amount} type='text' name='guests' placeholder='Кол-во гостей' onChange={(e) => changeOffer(e)} />

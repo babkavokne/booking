@@ -38,20 +38,25 @@ const imageUpload = multer({ storage: imageStorage })
 
 router.post('/createOffer', imageUpload.array('images'), async (req, res) => {
   const offer = JSON.parse(req.body.offer)
+
   offer.rating = 0;
   offer.numberOfVotes = 0;
+  offer.images = req.files.map(file => file.filename)
+
   console.log('???', offer);
   console.log('files!!! length', req.files.length);
   const newOffer = await OfferModel.create(offer)
-  const country = await CountryModel.findOne({ country: newOffer.coutry })
+  const country = await CountryModel.findOne({ country: newOffer.country })
   console.log('country', country);
   if (!country) {
     const newCountry = await CountryModel.create({ country: newOffer.country })
     console.log('newCountry', newCountry);
   }
+
   console.log('aAAA', req.files.map((file) => { file.offer = newOffer._id }));
 
   const offerImages = await OfferImageModel.create(req.files)
+
   console.log('newOffer', newOffer);
   console.log('offerImages', offerImages);
 

@@ -30,7 +30,7 @@ const EditProfile = () => {
       data.append('id', localStorage.getItem('id'))
       const res = await $api.post('/uploadAvatar', data);
       console.log('res', res);
-      const link = `http://localhost:5000/${res.data.filename}`
+      const link = `http://localhost:5000/avatars/${res.data.filename}`
       localStorage.setItem('avatar', link)
       console.log('link', link);
       dispatch(avatarChange(link))

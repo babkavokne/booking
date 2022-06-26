@@ -6,26 +6,26 @@ import home from '../../../../static/icons/home.svg'
 import cl from './InnCard.module.sass'
 import MyButton from '../../../MyButton/MyButton';
 
-const InnCard = () => {
+const InnCard = (props) => {
   return (
-    <div className={cl.inncard}>
-      <div className={cl.flag}>Flash Offer</div>
-      <img className={cl.innPicture} src={inn} alt="Image of luxury inn with pool and palms: Image" />
-      <div className={cl.info}>
-        <div className={cl.title}>LUX* Belle Mare</div>
+    <div className={`${cl.inncard} ${props.className}`}>
+      {props.flash ? <div className={cl.flag}>Flash Offer</div> : null}
+      <img className={`${cl.innPicture} ${props.small ? cl.small : null}`} src={props.src} alt="Image of luxury inn with pool and palms: Image" />
+      <div className={`${cl.info} ${props.small ? cl.small : null}`}>
+        <div className={cl.title}>{props.name}</div>
         <div className={cl.room}>
           <div className={cl.item}>
             <img src={marker} alt="Icon of map pin: Icon" />
-            1749 Wheeler Ridge  Delaware</div>
+            {props.adress}</div>
           <div className={cl.item}>
             <img src={user} alt="Human icon: Icon" />
-            2 x Guests</div>
+            {props.guests} x {props.guests > 1 ? 'Guests' : 'Guest'}</div>
           <div className={cl.item}>
             <img src={home} alt="Icon of little house: Icon" />
-            1 x Room</div>
+            {props.rooms} x {props.rooms > 1 ? 'Rooms' : 'Room'}</div>
         </div>
         <div className={cl.bottom}>
-          <div className={cl.price}><span>$10,500</span>$ 8,500</div>
+          <div className={cl.price}><span>$10,500</span>$ {props.price}</div>
           <MyButton className={cl.button}>Book Now</MyButton>
         </div>
       </div>

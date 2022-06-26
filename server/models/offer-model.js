@@ -6,6 +6,7 @@ const OfferSchema = new Schema({
   allocationType: String,
   country: {type: String, required: true},
   city: {type: String, required: true},
+  adress: {type: String, required: true},
   offerName: {type: String, required: true, min: 3},
   rating: Number,
   numberOfVotes: Number,
@@ -14,7 +15,8 @@ const OfferSchema = new Schema({
   phone: {type: Number, required: true},
   rooms: {type: Number, required: true},
   description: String, 
-  highlights: [String]
+  highlights: [String],
+  images: [String]
 })
 
 module.exports = model('Offer', OfferSchema);
