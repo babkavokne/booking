@@ -30,6 +30,20 @@ const OpenCountry = (props) => {
     getCountries()
   }, [])
 
+  const nextImage = () => {
+    console.log('document.querySelector(`.${cl.inner}`).style.marginLeft', document.querySelector(`.${cl.inner}`).style.marginLeft.slice(0, -2));
+    console.log('document.querySelector(`.${cl.inner}`).style.marginRight', document.querySelector(`.${cl.inner}`).style.marginLeft.slice(0, -2));
+    document.querySelector(`.${cl.card}`).style.marginLeft = +(document.querySelector(`.${cl.card}`).style.marginLeft.slice(0, -2)) + 100 +`px`;
+    // document.querySelector(`.${cl.card}`).style.marginRight = +(document.querySelector(`.${cl.card}`).style.marginRight.slice(0, -2)) - 100 +`px`;
+  }
+
+  const prevImage = () => {
+    console.log('document.querySelector(`.${cl.inner}`).style.marginLeft', document.querySelector(`.${cl.inner}`).style.marginLeft.slice(0, -2));
+    console.log('document.querySelector(`.${cl.inner}`).style.marginRight', document.querySelector(`.${cl.inner}`).style.marginLeft.slice(0, -2));
+    document.querySelector(`.${cl.card}`).style.marginLeft = +(document.querySelector(`.${cl.card}`).style.marginLeft.slice(0, -2)) - document.querySelector(`.${cl.inner}`).clientWidth +`px`;
+    // document.querySelector(`.${cl.card}`).style.marginRight = +(document.querySelector(`.${cl.card}`).style.marginRight.slice(0, -2)) + 100 +`px`;
+  }
+
   return (
     <>
       {offers ? (
@@ -37,23 +51,24 @@ const OpenCountry = (props) => {
           <h1>{offers[0].country} - откройте для себя эту страну!</h1>
           <h3>В этих популярных местах вы точно найдете что-то для себя</h3>
           <div className={cl.slider}>
-            {offers.map((offer, i) =>
-              <InnCard className={cl.card}
-                name={offer.offerName}
-                key={i}
-                flash
-                src={`http://localhost:5000/images/${offer.images[0]}`}
-                adress={offer.adress} 
-                guests={offer.guests}
-                rooms={offer.rooms}
-                price={offer.lowestPrice}
-                small
-                onClick={console.log(document.querySelector(`.${cl.card}`).width)}
+            <div className={cl.inner}>
+              {offers.map((offer, i) =>
+                <InnCard className={cl.card}
+                  name={offer.offerName}
+                  key={i}
+                  flash
+                  src={`http://localhost:5000/images/${offer.images[0]}`}
+                  adress={offer.adress}
+                  guests={offer.guests}
+                  rooms={offer.rooms}
+                  price={offer.lowestPrice}
+                  small
                 />
-            )}
+              )}
+            </div>
           </div>
-          <div className={cl.next}><img src={next} alt="" /></div>
-          <div className={cl.prev}><img src={prev} alt="" /></div>
+          <div className={cl.next}><img src={next} onClick={nextImage} alt="" /></div>
+          <div className={cl.prev}><img src={prev} onClick={prevImage} alt="" /></div>
         </div>
       ) : (
         <MyLoader />)}
