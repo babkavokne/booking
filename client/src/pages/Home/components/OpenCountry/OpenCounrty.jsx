@@ -31,17 +31,28 @@ const OpenCountry = (props) => {
   }, [])
 
   const nextImage = () => {
-    console.log('document.querySelector(`.${cl.inner}`).style.marginLeft', document.querySelector(`.${cl.inner}`).style.marginLeft.slice(0, -2));
-    console.log('document.querySelector(`.${cl.inner}`).style.marginRight', document.querySelector(`.${cl.inner}`).style.marginLeft.slice(0, -2));
-    document.querySelector(`.${cl.card}`).style.marginLeft = +(document.querySelector(`.${cl.card}`).style.marginLeft.slice(0, -2)) + 100 +`px`;
-    // document.querySelector(`.${cl.card}`).style.marginRight = +(document.querySelector(`.${cl.card}`).style.marginRight.slice(0, -2)) - 100 +`px`;
+    const cards = document.querySelectorAll(`.${cl.card}`)
+    const inner = document.querySelector(`.${cl.inner}`)
+    cards[0].style.marginLeft = +cards[0].style.marginLeft.slice(0, -2) - inner.offsetWidth + `px`;
+    if (cards.length < 4) {
+      cards[0].style.marginLeft = 0
+    }
+
+    console.log('cards.length - 4) * cards[0].offsetWidth', (cards.length - 4) * cards[0].offsetWidth);
+
+    if (-cards[0].style.marginLeft.slice(0, -2) >= ((cards.length - 4) * cards[0].offsetWidth)) {
+      console.log('1');
+      cards[0].style.marginLeft = -(cards.length - 4) * cards[0].offsetWidth + 'px'
+    }
   }
 
   const prevImage = () => {
-    console.log('document.querySelector(`.${cl.inner}`).style.marginLeft', document.querySelector(`.${cl.inner}`).style.marginLeft.slice(0, -2));
-    console.log('document.querySelector(`.${cl.inner}`).style.marginRight', document.querySelector(`.${cl.inner}`).style.marginLeft.slice(0, -2));
-    document.querySelector(`.${cl.card}`).style.marginLeft = +(document.querySelector(`.${cl.card}`).style.marginLeft.slice(0, -2)) - document.querySelector(`.${cl.inner}`).clientWidth +`px`;
-    // document.querySelector(`.${cl.card}`).style.marginRight = +(document.querySelector(`.${cl.card}`).style.marginRight.slice(0, -2)) + 100 +`px`;
+    const card = document.querySelector(`.${cl.card}`)
+    const inner = document.querySelector(`.${cl.inner}`)
+    card.style.marginLeft = +card.style.marginLeft.slice(0, -2) + inner.offsetWidth + `px`;
+    if (+card.style.marginLeft.slice(0, -2) > 0) {
+      card.style.marginLeft = 0
+    }
   }
 
   return (
