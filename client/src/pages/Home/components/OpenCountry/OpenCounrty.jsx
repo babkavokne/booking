@@ -34,15 +34,18 @@ const OpenCountry = (props) => {
     const cards = document.querySelectorAll(`.${cl.card}`)
     const inner = document.querySelector(`.${cl.inner}`)
     cards[0].style.marginLeft = +cards[0].style.marginLeft.slice(0, -2) - inner.offsetWidth + `px`;
+
     if (cards.length < 4) {
       cards[0].style.marginLeft = 0
+      return
     }
 
     console.log('cards.length - 4) * cards[0].offsetWidth', (cards.length - 4) * cards[0].offsetWidth);
+    console.log('cards[0].style.columnGap.slice(0, -2))', inner.style.columnGap.slice(0, -2) );
 
-    if (-cards[0].style.marginLeft.slice(0, -2) >= ((cards.length - 4) * cards[0].offsetWidth)) {
+    if (-cards[0].style.marginLeft.slice(0, -2) >= ((cards.length - 4) * cards[0].offsetWidth + (cards.length - 3 * cards[0].style.columnGap.slice(0, -2)))) {
       console.log('1');
-      cards[0].style.marginLeft = -(cards.length - 4) * cards[0].offsetWidth + 'px'
+      cards[0].style.marginLeft = -((cards.length - 4) * cards[0].offsetWidth - (cards.length - 3 * inner.style.columnGap.slice(0, -2))) + 'px'
     }
   }
 
@@ -62,7 +65,7 @@ const OpenCountry = (props) => {
           <h1>{offers[0].country} - откройте для себя эту страну!</h1>
           <h3>В этих популярных местах вы точно найдете что-то для себя</h3>
           <div className={cl.slider}>
-            <div className={cl.inner}>
+            <div className={cl.inner} style={{columnGap: '16px'}}>
               {offers.map((offer, i) =>
                 <InnCard className={cl.card}
                   name={offer.offerName}
