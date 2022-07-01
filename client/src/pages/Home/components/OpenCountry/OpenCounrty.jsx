@@ -41,13 +41,13 @@ const OpenCountry = (props) => {
     }
 
     console.log('cards.length - 4) * cards[0].offsetWidth', (cards.length - 4) * cards[0].offsetWidth);
-    console.log('cards[0].style.columnGap.slice(0, -2))', inner.style.columnGap.slice(0, -2) );
+    console.log(((cards.length - 4) * cards[0].offsetWidth + cards.length * inner.style.columnGap.slice(0, -2)));
 
-    if (-cards[0].style.marginLeft.slice(0, -2) >= ((cards.length - 4) * cards[0].offsetWidth + (cards.length - 3 * cards[0].style.columnGap.slice(0, -2)))) {
+    if (-cards[0].style.marginLeft.slice(0, -2) >= ((cards.length - 4) * cards[0].offsetWidth + cards.length * inner.style.columnGap.slice(0, -2))) {
       console.log('1');
-      cards[0].style.marginLeft = -((cards.length - 4) * cards[0].offsetWidth - (cards.length - 3 * inner.style.columnGap.slice(0, -2))) + 'px'
+      cards[0].style.marginLeft = -((cards.length - 4) * cards[0].offsetWidth + (cards.length - 4) * inner.style.columnGap.slice(0, -2)) + 'px'
     }
-  }
+  } 
 
   const prevImage = () => {
     const card = document.querySelector(`.${cl.card}`)
