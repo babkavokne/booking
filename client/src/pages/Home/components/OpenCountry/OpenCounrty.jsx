@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import {NavLink} from 'react-router-dom'
 import MyLoader from '../../../../components/MyLoader/MyLoader';
 import InnCard from '../../../../components/OtherPackages/components/InnCard/InnCard';
 import next from '../../../../static/icons/arrow-right.svg'
@@ -47,7 +48,7 @@ const OpenCountry = (props) => {
       console.log('1');
       cards[0].style.marginLeft = -((cards.length - 4) * cards[0].offsetWidth + (cards.length - 4) * inner.style.columnGap.slice(0, -2)) + 'px'
     }
-  } 
+  }
 
   const prevImage = () => {
     const card = document.querySelector(`.${cl.card}`)
@@ -65,19 +66,20 @@ const OpenCountry = (props) => {
           <h1>{offers[0].country} - откройте для себя эту страну!</h1>
           <h3>В этих популярных местах вы точно найдете что-то для себя</h3>
           <div className={cl.slider}>
-            <div className={cl.inner} style={{columnGap: '16px'}}>
+            <div className={cl.inner} style={{ columnGap: '16px' }}>
               {offers.map((offer, i) =>
-                <InnCard className={cl.card}
-                  name={offer.offerName}
-                  key={i}
-                  flash
-                  src={`http://localhost:5000/images/${offer.images[0]}`}
-                  adress={offer.adress}
-                  guests={offer.guests}
-                  rooms={offer.rooms}
-                  price={offer.lowestPrice}
-                  small
-                />
+                <NavLink to={`/main/${offer._id}`} className={cl.card} key={i}>
+                  <InnCard
+                    name={offer.offerName}
+                    flash
+                    src={`http://localhost:5000/images/${offer.images[0]}`}
+                    adress={offer.adress}
+                    guests={offer.guests}
+                    rooms={offer.rooms}
+                    price={offer.lowestPrice}
+                    small
+                  />
+                </NavLink>
               )}
             </div>
           </div>

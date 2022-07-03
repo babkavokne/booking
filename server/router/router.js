@@ -88,6 +88,13 @@ router.get('/openCountry/:countryName', async (req, res) => {
   res.json(countryOffers)
 })
 
+router.get('/getOffer/:id', async (req, res) => {
+  console.log('getOffer', req.params);
+  const offer = await OfferModel.findOne({id: req.params.id})
+  console.log('offer', offer);
+  res.json(offer)
+})
+
 router.post('/registration',
   body('email').isEmail(),
   body('password').isLength({ min: 3, max: 32 }),

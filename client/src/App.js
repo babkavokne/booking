@@ -34,7 +34,7 @@ function App() {
       {auth.isAuth ?
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/main' element={<Main />} />
+          <Route path='/main/:id' element={<Main />} />
           <Route path='/calc' element={<Calc />} />
           <Route path='/editProfile' element={<EditProfile />} />
           <Route path='/createOffer' element={<CreateOffer />} />
@@ -44,7 +44,6 @@ function App() {
         :
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/main' element={<Main />} />
           <Route path='/auth' element={<Auth />} />
           <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
