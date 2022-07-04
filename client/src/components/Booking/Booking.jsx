@@ -11,17 +11,17 @@ const Booking = (props) => {
       <div className={cl.info}>
         <div className={cl.price}>
           <span>price starts as</span>
-          $ 8,500
+          $ {props.offer.lowestPrice}
           <span>per room / night</span>
         </div>
         <div className={cl.room}>
           <div className={cl.rooms}>
             <img src={user} alt="Human icon: Icon" />
-            2 x Guests
+            {props.offer.guests} x { props.offer.guests > 1 ? 'Guests' : 'Guest'} 
           </div>
           <div className={cl.rooms}>
             <img src={home} alt="Icon of little house: Icon" />
-            1 x Room
+            {props.offer.rooms} x {props.offer.rooms > 1 ? 'Rooms' : 'Room'} 
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@ const Booking = (props) => {
         Quick Booking
         <div>
           <img src={phone} alt="Icon of handset: Icon" />
-          12100
+          {props.offer.phone}
         </div>
       </div>
       <MyButton>View Other Option</MyButton>

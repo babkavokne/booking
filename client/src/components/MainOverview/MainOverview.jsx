@@ -7,7 +7,7 @@ import Rating from './components/rating/Rating'
 import ReactStars from 'react-stars'
 import cl from './MainOverview.module.sass'
 
-const MainOverview = () => {
+const MainOverview = (props) => {
   const changeRating = (newRating) => {
     console.log(newRating)
   }
@@ -15,21 +15,20 @@ const MainOverview = () => {
   return (
     <div className='wrapper'>
       <div className='container'>
-
         <div className={cl.header}>
           <div className={cl.left}>
             <div className={cl.stars}>
-              <ReactStars
+              {/* <ReactStars
                 count={5}
                 onChange={changeRating}
                 size={24}
                 color2={'#ffd700'}
                 value={2.5}
-              />
+              /> */}
             </div>
             <div className={cl.mainline}>
               <div className={cl.name}>
-                GRAND HILTON HOTEL
+                {props.offer.offerName}
               </div>
               <div className={cl.additions}>
                 <Flash />
@@ -44,7 +43,7 @@ const MainOverview = () => {
         </div>
         <div className={cl.main}>
           <Slider className={cl.slider} />
-          <Booking className={cl.booking} />
+          <Booking className={cl.booking} offer={props.offer}/>
           <Map />
         </div>
       </div>

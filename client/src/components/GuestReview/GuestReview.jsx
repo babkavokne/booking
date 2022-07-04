@@ -21,12 +21,12 @@ const GuestReview = () => {
                 <div className={cl.name}>Megan Fox</div>
                 <div className={cl.registry}>Stayed 18 Nov, 2019</div>
                 <div className={cl.rating}>
-                  <ReactStars
+                  {/* <ReactStars
                     count={5}
                     onChange={ratingChanged}
                     size={24}
                     color2={'#ffd700'}
-                  />
+                  /> */}
                 </div>
               </div>
               <div className={cl.review}>
