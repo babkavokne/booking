@@ -44,7 +44,7 @@ const MainOverview = (props) => {
           <Rating className={cl.hidden} />
         </div>
         <div className={cl.main}>
-          <Slider className={cl.slider} images={props.offer.images}/>
+          <Slider className={cl.slider} images={props.offer.images} />
           <Booking className={cl.booking} offer={props.offer}/>
           <Map />
         </div>
