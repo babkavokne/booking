@@ -12,6 +12,8 @@ const MainOverview = (props) => {
     console.log(newRating)
   }
   
+  console.log('props', props);
+  
   return (
     <div className='wrapper'>
       <div className='container'>
@@ -42,7 +44,7 @@ const MainOverview = (props) => {
           <Rating className={cl.hidden} />
         </div>
         <div className={cl.main}>
-          <Slider className={cl.slider} />
+          <Slider className={cl.slider} images={props.offer.images}/>
           <Booking className={cl.booking} offer={props.offer}/>
           <Map />
         </div>

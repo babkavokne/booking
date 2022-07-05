@@ -30,16 +30,23 @@ const Main = () => {
 
   return (
     <>
-      <Navtop />
-      <Navbar />
-      <Breadcrumbs />
-      <MainOverview offer={offer}/>
-      <InfoPanel />
-      <OtherPackages />
-      <GuestReview />
-      <Newsletter />
-      <Activities />
-      <Footer />
+      {offer ? (
+        <>
+          <Navtop />
+          <Navbar />
+          <Breadcrumbs />
+          <MainOverview offer={offer} />
+          <InfoPanel />
+          <OtherPackages />
+          <GuestReview />
+          <Newsletter />
+          <Activities />
+          <Footer />
+        </>
+      ) : (
+        <h1>Оформляем спишь</h1>
+      )}
+
     </>
   );
 }

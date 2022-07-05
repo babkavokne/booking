@@ -90,7 +90,7 @@ router.get('/openCountry/:countryName', async (req, res) => {
 
 router.get('/getOffer/:id', async (req, res) => {
   console.log('getOffer', req.params);
-  const offer = await OfferModel.findOne({id: req.params.id})
+  const offer = await OfferModel.findOne({_id: req.params.id})
   console.log('offer', offer);
   res.json(offer)
 })
