@@ -10,6 +10,7 @@ import cl from './OpenCountry.module.sass'
 const OpenCountry = (props) => {
   const [offers, setOffers] = useState()
   // const [country, setCountry] = useState()
+  
 
   const getCountries = async () => {
     const states = await $api.get('/getCountries/');

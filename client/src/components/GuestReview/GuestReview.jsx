@@ -2,7 +2,7 @@ import React from 'react';
 import avatar from '../../static/images/emma.jpg'
 import leftArrow from '../../static/icons/arrow-left.svg'
 import rightArrow from '../../static/icons/arrow-right.svg'
-import ReactStars from 'react-stars'
+import ReactStars from "react-rating-stars-component";
 import cl from './GuestReview.module.sass'
 
 const GuestReview = () => {
@@ -21,12 +21,12 @@ const GuestReview = () => {
                 <div className={cl.name}>Megan Fox</div>
                 <div className={cl.registry}>Stayed 18 Nov, 2019</div>
                 <div className={cl.rating}>
-                  {/* <ReactStars
+                  <ReactStars
                     count={5}
                     onChange={ratingChanged}
                     size={24}
                     color2={'#ffd700'}
-                  /> */}
+                  />
                 </div>
               </div>
               <div className={cl.review}>

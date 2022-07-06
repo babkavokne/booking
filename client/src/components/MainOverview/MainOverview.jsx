@@ -4,12 +4,15 @@ import Map from '../Map/Map';
 import Slider from '../Slider/Slider';
 import Flash from './components/Flash/Flash'
 import Rating from './components/rating/Rating'
-import ReactStars from 'react-stars'
+import ReactStars from "react-rating-stars-component";
+
 import cl from './MainOverview.module.sass'
+import $api from '../../http';
 
 const MainOverview = (props) => {
-  const changeRating = (newRating) => {
-    console.log(newRating)
+  const changeRating = async (newRating) => {
+    const res = await $api.post('/changeRating', newRating);
+    console.log('res', res);
   }
   
   console.log('props', props);
@@ -20,13 +23,14 @@ const MainOverview = (props) => {
         <div className={cl.header}>
           <div className={cl.left}>
             <div className={cl.stars}>
-              {/* <ReactStars
+              <ReactStars
                 count={5}
                 onChange={changeRating}
                 size={24}
                 color2={'#ffd700'}
                 value={2.5}
-              /> */}
+                isHalf={true}
+              />
             </div>
             <div className={cl.mainline}>
               <div className={cl.name}>
@@ -41,7 +45,7 @@ const MainOverview = (props) => {
               Half-Board/ All Inclusive + Complimentary Activities + Child Stays Free
             </div>
           </div>
-          <Rating className={cl.hidden} />
+          <Rating className={cl.hidden} rating={props.offer.rating} />
         </div>
         <div className={cl.main}>
           <Slider className={cl.slider} images={props.offer.images} />

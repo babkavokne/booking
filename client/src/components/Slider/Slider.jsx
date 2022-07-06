@@ -40,8 +40,8 @@ const Slider = (props) => {
   }
   return (
     <div className={cl.slider + ' ' + props.className}>
-      <div className={cl.inner} style={{ columnGap: {cardColumnGap} + 'px' }}>
-        {images ? images.map((image, i) => <img key={i} style={{flex: `0 0 ${cardFlex}`}}className={cl.card} src={`http://localhost:5000/images/${image}`} alt="" />) : <h1>:c</h1>}
+      <div className={cl.inner} style={{ columnGap: { cardColumnGap } + 'px' }}>
+        {images ? images.map((image, i) => <img key={i} style={{ flex: `0 0 ${cardFlex}` }} className={cl.card} src={`http://localhost:5000/images/${image}`} alt="" />) : <h1>:c</h1>}
       </div>
       <div className={cl.next}><img src={next} onClick={nextImage} alt="" /></div>
       <div className={cl.prev}><img src={prev} onClick={prevImage} alt="" /></div>
