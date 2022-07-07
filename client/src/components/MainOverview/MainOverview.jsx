@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Booking from '../Booking/Booking';
 import Map from '../Map/Map';
 import Slider from '../Slider/Slider';
@@ -10,12 +10,20 @@ import cl from './MainOverview.module.sass'
 import $api from '../../http';
 
 const MainOverview = (props) => {
-  const changeRating = async (newRating) => {
-    const res = await $api.post('/changeRating', newRating);
-    console.log('res', res);
-  }
+  const [rating, setRating] = useState(props.offer.rating)
   
-  console.log('props', props);
+  const changeRating = async (newRating) => {
+    console.log('newRating', newRating);
+    const res = await $api.post('/changeRating', {newRating, id: props.offer._id});
+    console.log('res', res);
+    setRating(res.data.data);
+  }
+
+  useEffect(() => {
+    setRating(props.offer.rating) 
+  }, [props.offer.rating]);
+
+  console.log('rating', rating);
   
   return (
     <div className='wrapper'>
@@ -28,7 +36,6 @@ const MainOverview = (props) => {
                 onChange={changeRating}
                 size={24}
                 color2={'#ffd700'}
-                value={2.5}
                 isHalf={true}
               />
             </div>
@@ -38,14 +45,14 @@ const MainOverview = (props) => {
               </div>
               <div className={cl.additions}>
                 <Flash />
-                <Rating className={cl.mobile} />
+                <Rating className={cl.mobile} rating={rating}/>
               </div>
             </div>
             <div className={cl.subline}>
               Half-Board/ All Inclusive + Complimentary Activities + Child Stays Free
             </div>
           </div>
-          <Rating className={cl.hidden} rating={props.offer.rating} />
+          <Rating className={cl.hidden} rating={rating} />
         </div>
         <div className={cl.main}>
           <Slider className={cl.slider} images={props.offer.images} />

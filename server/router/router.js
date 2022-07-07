@@ -201,4 +201,15 @@ router.patch('/update', async (req, res) => {
   }
 })
 
+router.post('/changeRating', async (req, res) => {
+  const offer = await OfferModel.findOne({_id: req.body.id})
+  const oldRatingValue = offer.rating * offer.numberOfVotes;
+  offer.numberOfVotes++;
+  const newRatingValue = (oldRatingValue + req.body.newRating) / offer.numberOfVotes
+  offer.rating = newRatingValue;
+  offer.save()
+  console.log('offer', offer);
+  res.json({message: "Ok", data: offer.rating.toFixed(1)})
+})
+
 module.exports = router

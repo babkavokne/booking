@@ -20,6 +20,7 @@ const Main = () => {
 
   const getOffer = async () => {
     const res = await $api.get(`/getOffer/${id}`)
+    res.data.rating = res.data.rating.toFixed(1);
     setOffer(res.data)
   }
 

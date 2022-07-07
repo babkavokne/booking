@@ -4,7 +4,7 @@ import cl from './Rating.module.sass'
 const Rating = (props) => {
   return (
     <div className={`${cl.rating} ${props.className}`}>
-      <p>User Rattings</p>
+      <p>User Ratings</p>
       <div><span>{props.rating}</span>/5</div>
     </div>
   );
