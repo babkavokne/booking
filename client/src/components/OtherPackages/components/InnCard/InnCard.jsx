@@ -5,6 +5,7 @@ import user from '../../../../static/icons/user.svg'
 import home from '../../../../static/icons/home.svg'
 import cl from './InnCard.module.sass'
 import MyButton from '../../../MyButton/MyButton';
+import { NavLink } from 'react-router-dom';
 
 const InnCard = (props) => {
   return (
@@ -26,7 +27,7 @@ const InnCard = (props) => {
         </div>
         <div className={cl.bottom}>
           <div className={cl.price}><span>$10,500</span>$ {props.price}</div>
-          <MyButton className={cl.button}>Book Now</MyButton>
+          <MyButton className={cl.button}><NavLink to={`/main/`} target="_blank" className={cl.link}>Book Now</NavLink></MyButton>
         </div>
       </div>
     </div>

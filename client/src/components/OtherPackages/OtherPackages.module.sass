@@ -27,10 +27,12 @@
       img
         display: block
         border-radius: 8px 0 0 8px
+        max-height: 400px
       .info
         background-color: $title-background
         color: #fff
         padding: 46px 21px 30px 40px
+        width: 100%
         border-radius: 0 8px 8px 0
         .title
           font-size: 18px
@@ -61,8 +63,18 @@
               font-weight: normal
               top: -15px
               text-decoration: line-through
+          .link
+            color: #fff
           .button
             width: 120px
+
+@media (max-width: 1000px)
+  .otherpackages
+    .body
+      .card
+        img
+          max-height: 100%
+          object-fit: cover
 
 @media (max-width: 768px)
   .otherpackages
@@ -71,7 +83,7 @@
         flex-direction: column
         grid-column: 1
         .inn
-          max-height: 245px
+          max-height: 200px
           width: 100%
           height: auto
           border-radius: 8px 8px 0 0

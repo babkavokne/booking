@@ -16,7 +16,6 @@ import cl from './Main.module.sass';
 const Main = () => {
   const { id } = useParams()
   const [offer, setOffer] = useState({})
-  console.log('useParams(id)', id);
 
   const getOffer = async () => {
     const res = await $api.get(`/getOffer/${id}`)
@@ -24,7 +23,6 @@ const Main = () => {
     setOffer(res.data)
   }
 
-  console.log('offer', offer);
   useEffect(() => {
     getOffer()
   }, [])
@@ -38,7 +36,7 @@ const Main = () => {
           <Breadcrumbs />
           <MainOverview offer={offer} />
           <InfoPanel />
-          <OtherPackages />
+          <OtherPackages offer={offer} />
           <GuestReview />
           <Newsletter />
           <Activities />

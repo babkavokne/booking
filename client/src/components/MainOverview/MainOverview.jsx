@@ -5,7 +5,6 @@ import Slider from '../Slider/Slider';
 import Flash from './components/Flash/Flash'
 import Rating from './components/rating/Rating'
 import ReactStars from "react-rating-stars-component";
-
 import cl from './MainOverview.module.sass'
 import $api from '../../http';
 
@@ -13,9 +12,7 @@ const MainOverview = (props) => {
   const [rating, setRating] = useState(props.offer.rating)
   
   const changeRating = async (newRating) => {
-    console.log('newRating', newRating);
     const res = await $api.post('/changeRating', {newRating, id: props.offer._id});
-    console.log('res', res);
     setRating(res.data.data);
   }
 
@@ -23,8 +20,6 @@ const MainOverview = (props) => {
     setRating(props.offer.rating) 
   }, [props.offer.rating]);
 
-  console.log('rating', rating);
-  
   return (
     <div className='wrapper'>
       <div className='container'>
