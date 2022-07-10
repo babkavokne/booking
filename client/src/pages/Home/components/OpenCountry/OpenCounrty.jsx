@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import MyLoader from '../../../../components/MyLoader/MyLoader';
 import InnCard from '../../../../components/OtherPackages/components/InnCard/InnCard';
 import next from '../../../../static/icons/arrow-right.svg'
@@ -10,7 +10,7 @@ import cl from './OpenCountry.module.sass'
 const OpenCountry = (props) => {
   const [offers, setOffers] = useState()
   // const [country, setCountry] = useState()
-  
+
 
   const getCountries = async () => {
     const states = await $api.get('/getCountries/');
@@ -69,8 +69,8 @@ const OpenCountry = (props) => {
           <div className={cl.slider}>
             <div className={cl.inner} style={{ columnGap: '16px' }}>
               {offers.map((offer, i) =>
-                <NavLink to={`/main/${offer._id}`} className={cl.card} key={i}>
-                  <InnCard
+                  <InnCard className={cl.card}
+                    key={i}
                     name={offer.offerName}
                     flash
                     src={`http://localhost:5000/images/${offer.images[0]}`}
@@ -78,9 +78,9 @@ const OpenCountry = (props) => {
                     guests={offer.guests}
                     rooms={offer.rooms}
                     price={offer.lowestPrice}
+                    id={offer._id}
                     small
                   />
-                </NavLink>
               )}
             </div>
           </div>

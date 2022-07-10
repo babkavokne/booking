@@ -60,18 +60,20 @@ const OtherPackages = (props) => {
                   </div>
                   <div className={cl.bottom}>
                     <div className={cl.price}><span>$10,500</span>$ 8,500</div>
-                    <MyButton className={cl.button}><NavLink to={`/main/${offers[0]._id}`} target="_blank" className={cl.link}>Book Now</NavLink></MyButton>
+                    <NavLink to={`/main/${offers[0]._id}`} target="_blank" className={cl.link}><MyButton className={cl.button}>Book Now</MyButton></NavLink>
                   </div>
                 </div>
               </div>
-              {offers.filter((offer, i) => i > 0 && i < 5).map(offer => <InnCard
+              {offers.filter((offer, i) => i > 0 && i < 5).map((offer, i) => <InnCard
                 name={offer.offerName}
+                key={i}
                 flash
                 src={`http://localhost:5000/images/${offer.images[0]}`}
                 adress={offer.adress}
                 guests={offer.guests}
                 rooms={offer.rooms}
                 price={offer.lowestPrice}
+                id={offer._id}
                 small></InnCard>)}
             </div>
 
