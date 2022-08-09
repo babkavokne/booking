@@ -3,38 +3,50 @@ import avatar from '../../static/images/emma.jpg'
 import leftArrow from '../../static/icons/arrow-left.svg'
 import rightArrow from '../../static/icons/arrow-right.svg'
 import ReactStars from "react-rating-stars-component";
+import ReviewCard from './components/ReviewCard/ReviewCard'
 import cl from './GuestReview.module.sass'
 
 const GuestReview = () => {
-  const ratingChanged = (newRating) => {
-    console.log(newRating)
+
+  const nextImage = () => {
+    const cards = document.querySelectorAll(`.${cl.card}`)
+    const inner = document.querySelector(`.${cl.inner}`)
+    cards[0].style.marginLeft = +cards[0].style.marginLeft.slice(0, -2) - inner.offsetWidth + `px`;
+
+    if (cards.length < 4) {
+      cards[0].style.marginLeft = 0
+      return
+    }
+
+    console.log('cards.length - 4) * cards[0].offsetWidth', (cards.length - 4) * cards[0].offsetWidth);
+    console.log(((cards.length - 4) * cards[0].offsetWidth + cards.length * inner.style.columnGap.slice(0, -2)));
+
+    if (-cards[0].style.marginLeft.slice(0, -2) >= ((cards.length - 4) * cards[0].offsetWidth + cards.length * inner.style.columnGap.slice(0, -2))) {
+      console.log('1');
+      cards[0].style.marginLeft = -((cards.length - 4) * cards[0].offsetWidth + (cards.length - 4) * inner.style.columnGap.slice(0, -2)) + 'px'
+    }
   }
+
+  const prevImage = () => {
+    const card = document.querySelector(`.${cl.card}`)
+    const inner = document.querySelector(`.${cl.inner}`)
+    card.style.marginLeft = +card.style.marginLeft.slice(0, -2) + inner.offsetWidth + `px`;
+    if (+card.style.marginLeft.slice(0, -2) > 0) {
+      card.style.marginLeft = 0
+    }
+  }
+
   return (
     <div className="wrapper">
       <div className="container">
         <div className={cl.guestreview}>
           <div className={cl.header}>What people thinks about us</div>
           <div className={cl.slider}>
-            <div className={cl.item}>
-              <div className={cl.profile}>
-                <img src={avatar} alt="User avatar: Image"></img>
-                <div className={cl.name}>Megan Fox</div>
-                <div className={cl.registry}>Stayed 18 Nov, 2019</div>
-                <div className={cl.rating}>
-                  <ReactStars
-                    count={5}
-                    onChange={ratingChanged}
-                    size={24}
-                    color2={'#ffd700'}
-                  />
-                </div>
-              </div>
-              <div className={cl.review}>
-                It was very nice hotel with cleanliness. Staff behavior was good and polite. They welcome us very well. Issue was only that Lift was not in working and we were allotted to 3rd floor and amenities articles were in corner of gallery which were giving bad feeling. Breakfast was good and support of the staff was also very nice. Location is not good as per atmosphere, it is very nearby most of the popular places but self location in a narrow street is not good. Overall it was a good experience and could recommend.
-              </div>
+            <div className={cl.inner}>
+              <ReviewCard className={cl.card}></ReviewCard>
             </div>
-            <img src={leftArrow} alt="Arrow-button left (previous): Icon" className={`${cl.arrow} ${cl.left}`} />
-            <img src={rightArrow} alt="Arrow-button left (next): Icon" className={`${cl.arrow} ${cl.right}`} />
+            <img src={leftArrow} alt="Arrow-button left (previous): Icon" className={`${cl.arrow} ${cl.left}`} onClick={prevImage} />
+            <img src={rightArrow} alt="Arrow-button left (next): Icon" className={`${cl.arrow} ${cl.right}`} onClick={nextImage} />
           </div>
         </div>
       </div>

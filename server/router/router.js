@@ -212,4 +212,9 @@ router.post('/changeRating', async (req, res) => {
   res.json({message: "Ok", data: offer.rating.toFixed(1)})
 })
 
+
+// router.post('/createComment', (req, res) => {
+
+// })
+
 module.exports = router

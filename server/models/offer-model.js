@@ -16,7 +16,8 @@ const OfferSchema = new Schema({
   rooms: {type: Number, required: true},
   description: String, 
   highlights: [String],
-  images: [String]
+  images: [String],
+  comments: [{type: Schema.Types.ObjectId, ref: 'User'}]
 })
 
 module.exports = model('Offer', OfferSchema);
