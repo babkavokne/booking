@@ -6,7 +6,7 @@ const User = require('./models/user-model');
 const router = require('./router/router');
 const cookieParser = require('cookie-parser');
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 app.use(express.static(`${__dirname}/static/`))
@@ -18,8 +18,6 @@ app.use(cors({
 }));
 
 app.use('/', router)
-
-
 
 const start = async () => {
   try {
